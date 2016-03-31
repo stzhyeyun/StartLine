@@ -4,8 +4,6 @@ package
 		
 	public class Program extends Sprite
 	{
-		private var parser:Parser = new Parser();
-		
 		public function Program()
 		{
 			trace("\n <Player Matching System by Score>");
@@ -16,10 +14,8 @@ package
 			{
 				return;
 			}
-			else
-			{
-				system.MatchByScore();
-			}
+			
+			system.MatchByScore();
 		}
 	}
 }
