@@ -18,10 +18,14 @@ package
 			_numDefeat = numDefeat;
 		}
 		
-		public function Print():void
+		public function Print(num:int):void
 		{
-			trace(" (ID : {0}, Name : {1}, Score : {2}, Win : {3}, Defeat : {4})",
-				_id, _name, _score, _numWin, _numDefeat);
+			trace("  - User ", num,
+				" (ID : ", _id,
+				", Name : ", _name,
+				", Score : ", _score,
+				", Win : ", _numWin,
+				", Defeat : ", _numDefeat, ")");
 		}
 		
 		// Getter & Setter //////////

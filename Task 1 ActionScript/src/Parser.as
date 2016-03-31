@@ -6,14 +6,14 @@ package
 	
 	public class Parser
 	{
-		public function ParseData(myScore:Int, userList:Vector.<User>):Boolean
+		public function ParseData(myScore:Int):Vector.<User>
 		{
 			var file:File = File.applicationDirectory;
 			file = file.resolvePath("Data.txt");
 						
 			if (file.exists)
 			{
-				var tempList:Vector.<User> = new Vector.<User>();
+				var userList:Vector.<User> = new Vector.<User>();
 				
 				try
 				{
@@ -28,8 +28,8 @@ package
 					
 					// Parse Criterion score
 					if (!ParseScore(dataLines.shift(), myScore))
-					{						
-						return false;
+					{			
+						return null;
 					}
 					
 					// Parse User Data 
@@ -43,28 +43,25 @@ package
 							userData[2],
 							userData[3],
 							userData[4]);
-						tempList.push(user);
+						userList.push(user);
 					}
 					
 					fileStream.close();
 				}
-				catch (error:Error)
+				catch (error:*)
 				{
 					trace("\n Error : Data is invalid.");
 					
-					userList = null;
-					return false;
+					return null;
 				}
 			
-				userList = tempList;
-				return true;
+				return userList;
 			}
 			else
 			{
 				trace("\n Error : Data does not exist. (Valid path : {0})", file.toString());
 				
-				userList = null;
-				return false;
+				return null;
 			}			
 		}
 		
@@ -79,13 +76,13 @@ package
 			}
 			
 			var figure:String = new String();
-			if (input.search(',') != -1 || input.search('.') != -1)
+			if (input.search(/,/) != -1 || input.search(/\./) != -1)
 			{
 				var temp:Array = input.split(/,|\./);
 				
-				for (var i:int = 1; i < temp.Length; i++)
+				for each (var element:String in temp)
 				{
-					if (temp[i].Length != 3)
+					if (element.length != 3)
 					{
 						trace("\n Error : The value (" + input + ") is invalid.");
 						
@@ -94,7 +91,7 @@ package
 					}
 				}
 						
-				for each (var element:String in temp)
+				for each (element in temp)
 				{
 					figure += element;
 				}

@@ -9,10 +9,17 @@ package
 		
 		public function Initialize():Boolean
 		{
-			var parser:Parser = new Parser();
-			var rawData:Vector.<User> = null;
+			try
+			{
+				var parser:Parser = new Parser();
+				GroupUsersByScore(parser.ParseData(_score));	
+			}
+			catch (error:*)
+			{
+				return false;
+			}
 			
-			return parser.ParseData(_score, rawData);
+			return true;
 		}
 		
 		public function MatchByScore():void
@@ -55,7 +62,7 @@ package
 			if (targetId == myGroupId)
 			{
 				var myGroup:Group = new Group(targetId);
-				myGroup.PushUsers(_userData[targetId - 1].GetNear(_score, numRequired, numRequired));
+				myGroup.PushUsers(_userData[targetId - 1].GetNear(_score.Value, numRequired.Value, numRequired));
 				matchedGroup.push(myGroup);
 				
 				upperIndex = targetId;
@@ -80,7 +87,7 @@ package
 				
 				while (requiredOfUpper.Value != 0)
 				{
-					if (upperIndex == -1 || upperIndex >= _userData.length - 1)
+					if (upperIndex == -1 || upperIndex >= _userData.length - 1 || !_userData[upperIndex])
 						break;
 					
 					intermediateGroup.PushUsers(
@@ -91,7 +98,7 @@ package
 				
 				while (requiredOfLower.Value != 0)
 				{
-					if (lowerIndex < 0)
+					if (lowerIndex < 0 || !_userData[lowerIndex])
 						break;
 					
 					intermediateGroup.PushUsers(
@@ -102,10 +109,8 @@ package
 			}
 			
 			// Set results
-			var temp:Vector.<Group> = new Vector.<Group>();
-			GroupResultsByScore(
-				intermediateGroup.GetNear(_score.Value, numRequired.Value, numRequired),
-				temp);
+			var temp:Vector.<Group> = GroupResultsByScore(
+				intermediateGroup.GetNear(_score.Value, numRequired.Value, numRequired));
 			
 			for (var i:int = 0; i < temp.length; i++)
 			{
@@ -125,29 +130,23 @@ package
 					DetermineWhichGroup(rawData[i].Score),
 					rawData[i]);
 			}
-			
-			// Users in Group -> Order by Score ascending
-//			foreach (Group group in _userData.Values)
-//			{
-//				group.Sort();
-//			}    
 		}
 		
-		private function GroupResultsByScore(rawData:Vector.<User>, result:Vector.<Group>):void
+		private function GroupResultsByScore(rawData:Vector.<User>):Vector.<Group>
 		{
 			var groupId:int = 0;
 			var doesExist:Boolean = false;
-			var temp:Vector.<Group> = new Vector.<Group>();
+			var result:Vector.<Group> = new Vector.<Group>();
 			
 			for (var i:int = 0; i < rawData.length; i++)
 			{
 				groupId = DetermineWhichGroup(rawData[i].Score);
 				
-				for (var j:int = 0; j < temp.length; j++)
+				for (var j:int = 0; j < result.length; j++)
 				{
-					if (temp[j].Id == groupId)
+					if (result[j].Id == groupId)
 					{
-						temp[j].PushOneUser(rawData[i]);
+						result[j].PushOneUser(rawData[i]);
 						doesExist = true;
 						break;
 					}
@@ -157,13 +156,13 @@ package
 				{
 					var group:Group = new Group(groupId);
 					group.PushOneUser(rawData[i]);
-					temp.push(group);
+					result.push(group);
 				}
 				doesExist = false;                
 			}
 			
-			temp.sort(CompareIdForDescendingSort);
-			result = temp;
+			result.sort(CompareIdForDescendingSort);
+			return result;
 		}
 		
 		private function DetermineWhichGroup(score:int):int
@@ -180,6 +179,7 @@ package
 					var group:Group = new Group(groupId);
 					group.PushOneUser(newOne);
 					_userData[groupId - 1] = group;
+					var a:int = 0;
 				}
 				else
 				{
@@ -192,7 +192,8 @@ package
 		{
 			trace("\n======================================================================");
 			trace("\n [Result]");
-			trace("\n Your group : " + myGroupId);
+			trace("\n Your score : ", _score.Value);
+			trace("\n Your group : ", myGroupId);
 			
 			for (var i:int = 0; i < result.length; i++)
 			{
@@ -218,6 +219,16 @@ package
 			{ 
 				return 0; 
 			} 
+		}
+		
+		// test
+		public function Test():Vector.<User>
+		{
+			var value:Vector.<User> = new Vector.<User>();
+			var user:User = new User(1, "test", 100, 10, 10);
+			value.push(user);
+			
+			return value;
 		}
 	}
 }

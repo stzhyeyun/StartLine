@@ -15,7 +15,7 @@ package
 			// Set Diff
 			for (var i:int = 0; i < _member.length; i++)
 			{
-				_member[i].Diff = Math.abs(score - _member[i].Score());
+				_member[i].Diff = Math.abs(score - _member[i].Score);
 			}
 			
 			// Sort by Diff
@@ -34,7 +34,7 @@ package
 			// Sort by Score (Reset)
 			_member.sort(CompareScoreForAscendingSort);
 			
-			numRemaining.Value = numRequired - result.length();
+			numRemaining.Value = numRequired - result.length;
 			return result;
 		}
 		
@@ -50,7 +50,7 @@ package
 				result.push(_member[i]);
 			}
 			
-			numRemaining.Value = numRequired - result.length();
+			numRemaining.Value = numRequired - result.length;
 			return result;
 		}
 		
@@ -68,13 +68,13 @@ package
 				j++;
 			}
 			
-			numRemaining.Value = numRequired - result.length();
+			numRemaining.Value = numRequired - result.length;
 			return result;
 		}
 		
 		public function PushOneUser(newOne:User):void
 		{
-			if (newOne != null)
+			if (newOne)
 			{
 				_member.push(newOne);
 			}
@@ -82,9 +82,12 @@ package
 		
 		public function PushUsers(newOne:Vector.<User>):void
 		{
-			if (newOne != null)
+			if (newOne)
 			{
-				_member.push(newOne);
+				for (var i:int = 0; i < newOne.length; i++)
+				{
+					_member.push(newOne[i]);
+				}				
 			}
 		}
 		
@@ -101,12 +104,11 @@ package
 		public function Print():void
 		{
 			trace(
-				"\n > Matched group : {0} ({1} players)", Id, _member.length);
+				"\n > Matched group : ", _id, " (", _member.length, " players)");
 			
 			for (var i:int = 0; i < _member.length; i++)
 			{
-				trace("  - User {0}", i + 1);
-				_member[i].Print();
+				_member[i].Print(i + 1);
 			}
 		}
 		
