@@ -26,7 +26,7 @@ package
 		{
 			var myGroupId:int = DetermineWhichGroup(_score.Value);
 			
-			// Find valid target
+			// 유효한 타겟 검색
 			var targetId:int = myGroupId;
 			var isCheckedGroup11:Boolean = false;
 			
@@ -52,13 +52,13 @@ package
 				}
 			}
 			
-			// Start matching
+			// 매칭 시작...
 			var matchedGroup:Vector.<Group> = new Vector.<Group>();
 			var numRequired:Int = new Int(_numRequired);
 			var upperIndex:int = -1;
 			var lowerIndex:int = -1;
 			
-			// My group
+			// 내 그룹 탐색
 			if (targetId == myGroupId)
 			{
 				var myGroup:Group = new Group(targetId);
@@ -78,7 +78,7 @@ package
 				lowerIndex = targetId - 1;
 			}
 			
-			// Upper & Lower group
+			// 상위 & 하위 그룸 탑색
 			var intermediateGroup:Group = new Group(0);
 			if (numRequired.Value != 0)
 			{
@@ -108,7 +108,7 @@ package
 				}
 			}
 			
-			// Set results
+			// 결과 정리
 			var temp:Vector.<Group> = GroupResultsByScore(
 				intermediateGroup.GetNear(_score.Value, numRequired.Value, numRequired));
 			
@@ -117,13 +117,12 @@ package
 				matchedGroup.push(temp[i]);
 			}
 			
-			// Print results
+			// 결과 출력
 			PrintResult(myGroupId, matchedGroup);
 		}
 		
 		private function GroupUsersByScore(rawData:Vector.<User>):void
 		{
-			// Group Users by Score
 			for (var i:int = 0; i < rawData.length; i++)
 			{
 				PushUser(
@@ -219,16 +218,6 @@ package
 			{ 
 				return 0; 
 			} 
-		}
-		
-		// test
-		public function Test():Vector.<User>
-		{
-			var value:Vector.<User> = new Vector.<User>();
-			var user:User = new User(1, "test", 100, 10, 10);
-			value.push(user);
-			
-			return value;
 		}
 	}
 }

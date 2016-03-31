@@ -20,19 +20,19 @@ package
 					var fileStream:FileStream = new FileStream();
 					fileStream.open(file, FileMode.READ);
 					
-					// Read file
+					// 파일 리딩
 					var data:String = fileStream.readUTFBytes(fileStream.bytesAvailable);
 										
-					// Split Data into Lines
+					// 줄 단위로 나눔
 					var dataLines:Array = data.split("\r\n");
 					
-					// Parse Criterion score
+					// 점수 파싱
 					if (!ParseScore(dataLines.shift(), myScore))
 					{			
 						return null;
 					}
 					
-					// Parse User Data 
+					// 유저 데이터 파싱
 					for each(var line:String in dataLines)
 					{
 						var userData:Array = line.split(',');						

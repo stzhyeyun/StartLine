@@ -12,16 +12,16 @@ package
 		
 		public function GetNear(score:int, numRequired:int, numRemaining:Int):Vector.<User>
 		{
-			// Set Diff
+			// 점수차 계산
 			for (var i:int = 0; i < _member.length; i++)
 			{
 				_member[i].Diff = Math.abs(score - _member[i].Score);
 			}
 			
-			// Sort by Diff
+			// 점수차 기준 정렬
 			_member.sort(CompareDiffForAscendingSort);
 			
-			// Pick results out
+			// 결과 선택
 			var result:Vector.<User> = new Vector.<User>();
 			for (i = 0; i < _member.length; i++)
 			{
@@ -31,7 +31,7 @@ package
 				result.push(_member[i]);
 			}
 			
-			// Sort by Score (Reset)
+			// 점수 기준 정렬 (초기화)
 			_member.sort(CompareScoreForAscendingSort);
 			
 			numRemaining.Value = numRequired - result.length;
@@ -103,8 +103,7 @@ package
 		
 		public function Print():void
 		{
-			trace(
-				"\n > Matched group : ", _id, " (", _member.length, " players)");
+			trace("\n > Matched group : ", _id, " (", _member.length, " players)");
 			
 			for (var i:int = 0; i < _member.length; i++)
 			{
@@ -120,22 +119,6 @@ package
 		} 
 		
 		// Comparer //////////
-		
-//		private function CompareIdForDescendingSort(x:Group, y:Group):int 
-//		{ 
-//			if (x.Id < y.Id) 
-//			{ 
-//				return 1; 
-//			} 
-//			else if (x.Id > y.Id) 
-//			{ 
-//				return -1; 
-//			} 
-//			else 
-//			{ 
-//				return 0; 
-//			} 
-//		} 
 		
 		private function CompareScoreForAscendingSort(x:User, y:User):int 
 		{ 
