@@ -37,7 +37,7 @@ package
 			return result;
 		}
 		
-		public function GetTop(numRequired:int, numRemaining:Int):Vector.<User> // 점수 기준 상위 멤버를 반환
+		public function GetTop(numRequired:int):Vector.<User> // 점수 기준 상위 멤버를 반환
 		{
 			var result:Vector.<User> = new Vector.<User>();
 			
