@@ -27,10 +27,10 @@ package
 		
 		public function MatchByScore():void
 		{
-			var myGroupId:int = DetermineWhichGroup(_score);
+			var groupId:int = DetermineWhichGroup(_score);
 			
 			// 유효한 타겟 검색
-			var targetId:int = myGroupId;
+			var targetId:int = groupId;
 			var isCheckedGroup11:Boolean = false;
 			
 			while (!_userData[targetId - 1])
@@ -62,24 +62,24 @@ package
 			var lowerIndex:int = -1;
 			
 			// 내 그룹 탐색
-			if (targetId == myGroupId)
+			if (targetId == groupId)
 			{
 				var tempUserList:Vector.<User> = _userData[targetId - 1].GetNear(_score, numRequired);
 				numRequired -= tempUserList.length;
 				
-				var myGroup:Group = new Group(targetId);
-				myGroup.PushUsers(tempUserList);
-				matchedGroup.push(myGroup);
+				var tempGroup:Group = new Group(targetId);
+				tempGroup.PushUsers(tempUserList);
+				matchedGroup.push(tempGroup);
 				
 				upperIndex = targetId;
 				lowerIndex = targetId - 2;
 			}
-			else if (targetId > myGroupId)
+			else if (targetId > groupId)
 			{
 				upperIndex = targetId - 1;
-				lowerIndex = myGroupId - 2;
+				lowerIndex = groupId - 2;
 			}
-			else if (targetId < myGroupId)
+			else if (targetId < groupId)
 			{
 				lowerIndex = targetId - 1;
 			}
@@ -128,7 +128,7 @@ package
 			}
 			
 			// 결과 출력
-			PrintResult(myGroupId, matchedGroup);
+			PrintResult(groupId, matchedGroup);
 		}
 		
 		private function GroupUsersByScore(rawData:Vector.<User>):void // 유저 데이터 최초 그룹핑
@@ -206,12 +206,12 @@ package
 			}
 		}
 		
-		private function PrintResult(myGroupId:int, result:Vector.<Group>):void
+		private function PrintResult(groupId:int, result:Vector.<Group>):void
 		{
 			trace("\n======================================================================");
 			trace("\n [Result]");
 			trace("\n Your score : ", _score);
-			trace("\n Your group : ", myGroupId);
+			trace("\n Your group : ", groupId);
 			
 			for (var i:int = 0; i < result.length; i++)
 			{
