@@ -96,8 +96,10 @@ package
 					if (upperIndex == -1 || upperIndex >= _userData.length - 1 || !_userData[upperIndex])
 						break;
 					
-					intermediateGroup.PushUsers(
-						_userData[upperIndex].GetBottom(requiredOfUpper.Value, requiredOfUpper));
+					tempUserList = _userData[upperIndex].GetBottom(requiredOfUpper);
+					numRequired -= tempUserList.length;
+					
+					intermediateGroup.PushUsers(tempUserList);
 					
 					upperIndex++;
 				}
