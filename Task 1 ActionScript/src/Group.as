@@ -51,7 +51,6 @@ package
 				j++;
 			}
 			
-			numRemaining.Value = numRequired - result.length;
 			return result;
 		}
 		
