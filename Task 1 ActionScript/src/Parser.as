@@ -43,6 +43,7 @@ package
 							userData[2],
 							userData[3],
 							userData[4]);
+						
 						userList.push(user);
 					}
 					
@@ -59,7 +60,7 @@ package
 			}
 			else
 			{
-				trace("\n Error : Data does not exist. (Valid path : {0})", file.toString());
+				trace("\n Error : Data does not exist. (Valid path : ", file.toString(), ")");
 				
 				return null;
 			}			
@@ -106,6 +107,7 @@ package
 			if (score.Value == 0)
 			{
 				trace("\n Error : The value (" + input + ") is invalid.");
+				
 				return false;
 			}           
 			else
