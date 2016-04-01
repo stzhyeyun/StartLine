@@ -10,8 +10,7 @@ package
 			_id = id;
 		}
 		
-		public function GetNear(score:int, numRequired:int, numRemaining:Int):Vector.<User>
-			// 내 그룹에서 점수가 가장 가까운 유저를 반환 (numRequired: 반환이 필요한 유저 수, numRemaining : 반환 후 추가 탐색이 필요한 유저 수)
+		public function GetNear(score:int, numRequired:int):Vector.<User>
 		{
 			// 점수차 계산
 			for (var i:int = 0; i < _member.length; i++)
@@ -34,8 +33,7 @@ package
 			
 			// 점수 기준 정렬 (초기화)
 			_member.sort(CompareScoreForAscendingSort);
-			
-			numRemaining.Value = numRequired - result.length;
+
 			return result;
 		}
 		
