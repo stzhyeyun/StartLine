@@ -57,7 +57,7 @@ package
 			
 			// 매칭 시작...
 			var matchedGroup:Vector.<Group> = new Vector.<Group>();
-			var numRequired:Int = new Int(_numRequired);
+			var numRequired:int = _numRequired;
 			var upperIndex:int = -1;
 			var lowerIndex:int = -1;
 			
