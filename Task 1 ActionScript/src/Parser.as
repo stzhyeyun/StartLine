@@ -47,7 +47,8 @@ package
 				{
 					trace("\n Error : Data is invalid.");
 					
-					return null;
+					fileStream.close();
+					return 0;
 				}
 			
 				return score;
