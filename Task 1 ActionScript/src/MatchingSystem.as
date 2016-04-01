@@ -27,7 +27,7 @@ package
 		
 		public function MatchByScore():void
 		{
-			var myGroupId:int = DetermineWhichGroup(_score.Value);
+			var myGroupId:int = DetermineWhichGroup(_score);
 			
 			// 유효한 타겟 검색
 			var targetId:int = myGroupId;
@@ -65,7 +65,7 @@ package
 			if (targetId == myGroupId)
 			{
 				var myGroup:Group = new Group(targetId);
-				myGroup.PushUsers(_userData[targetId - 1].GetNear(_score.Value, numRequired.Value, numRequired));
+				myGroup.PushUsers(_userData[targetId - 1].GetNear(_score, numRequired.Value, numRequired));
 				matchedGroup.push(myGroup);
 				
 				upperIndex = targetId;
@@ -113,7 +113,7 @@ package
 			
 			// 결과 정리
 			var temp:Vector.<Group> = GroupResultsByScore(
-				intermediateGroup.GetNear(_score.Value, numRequired.Value, numRequired));
+				intermediateGroup.GetNear(_score, numRequired.Value, numRequired));
 			
 			for (var i:int = 0; i < temp.length; i++)
 			{
@@ -203,7 +203,7 @@ package
 		{
 			trace("\n======================================================================");
 			trace("\n [Result]");
-			trace("\n Your score : ", _score.Value);
+			trace("\n Your score : ", _score);
 			trace("\n Your group : ", myGroupId);
 			
 			for (var i:int = 0; i < result.length; i++)
