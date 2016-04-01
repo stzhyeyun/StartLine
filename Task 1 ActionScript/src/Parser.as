@@ -6,15 +6,12 @@ package
 	
 	public class Parser
 	{
-		public function ParseData(myScore:Int):Vector.<User>
+		public function ParseData(userList:Vector.<User>):int // return score
 		{
-			var file:File = File.applicationDirectory;
-			file = file.resolvePath("Data.txt");
+			var file:File = File.applicationDirectory.resolvePath("Data.txt");
 						
 			if (file.exists)
 			{
-				var userList:Vector.<User> = new Vector.<User>();
-				
 				try
 				{
 					var fileStream:FileStream = new FileStream();
@@ -27,10 +24,7 @@ package
 					var dataLines:Array = data.split("\r\n");
 					
 					// 점수 파싱
-					if (!ParseScore(dataLines.shift(), myScore))
-					{			
-						return null;
-					}
+					var score:int = ParseScore(dataLines.shift());
 					
 					// 유저 데이터 파싱
 					for each(var line:String in dataLines)
@@ -56,13 +50,13 @@ package
 					return null;
 				}
 			
-				return userList;
+				return score;
 			}
 			else
 			{
 				trace("\n Error : Data does not exist. (Valid path : ", file.toString(), ")");
 				
-				return null;
+				return score;
 			}			
 		}
 		
