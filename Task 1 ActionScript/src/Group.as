@@ -54,7 +54,7 @@ package
 			return result;
 		}
 		
-		public function GetBottom(numRequired:int, numRemaining:Int):Vector.<User> // 점수 기준 하위 멤버를 반환
+		public function GetBottom(numRequired:int):Vector.<User> // 점수 기준 하위 멤버를 반환
 		{
 			var result:Vector.<User> = new Vector.<User>();
 			
@@ -66,7 +66,6 @@ package
 				result.push(_member[i]);
 			}
 			
-			numRemaining.Value = numRequired - result.length;
 			return result;
 		}
 			
