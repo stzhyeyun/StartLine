@@ -12,7 +12,10 @@ package
 			try
 			{
 				var parser:Parser = new Parser();
-				GroupUsersByScore(parser.ParseData(_score));	
+				var rawData:Vector.<User>;
+				
+				_score = parser.ParseData(rawData);
+				GroupUsersByScore(rawData);
 			}
 			catch (error:*)
 			{
