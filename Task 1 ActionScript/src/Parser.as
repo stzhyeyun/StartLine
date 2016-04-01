@@ -60,8 +60,10 @@ package
 			}			
 		}
 		
-		public function ParseScore(input:String, score:Int):Boolean
+		public function ParseScore(input:String):int // return 0: 유효하지 않은 점수 데이터
 		{
+			var score:int = 0;
+			
 			// 공란 제거
 			input = input.replace(/\s/g, '');
 			
@@ -70,8 +72,7 @@ package
 			{
 				trace("\n Error : The value (" + input + ") is invalid.");
 				
-				score.Value = 0;
-				return false;
+				return 0;
 			}
 			
 			// 구두점이 있을 경우 유효한 자리수인지 검사
@@ -86,8 +87,7 @@ package
 					{
 						trace("\n Error : The value (" + input + ") is invalid.");
 						
-						score.Value = 0;
-						return false;
+						return 0;
 					}
 				}
 						
@@ -101,17 +101,17 @@ package
 				figure = input;
 			}
 			
-			score.Value = int(figure);
+			score = int(figure);
 			
-			if (score.Value == 0) // 문자 필터
+			if (score == 0) // 문자 필터
 			{
 				trace("\n Error : The value (" + input + ") is invalid.");
 				
-				return false;
+				return 0;
 			}           
 			else
 			{
-				return true;
+				return score;
 			}
 		}
 	}
