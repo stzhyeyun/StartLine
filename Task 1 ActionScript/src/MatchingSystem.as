@@ -109,8 +109,10 @@ package
 					if (lowerIndex < 0 || !_userData[lowerIndex])
 						break;
 					
-					intermediateGroup.PushUsers(
-						_userData[lowerIndex].GetTop(requiredOfLower.Value, requiredOfLower));
+					tempUserList = _userData[upperIndex].GetTop(requiredOfLower);
+					numRequired -= tempUserList.length;
+					
+					intermediateGroup.PushUsers(tempUserList);
 					
 					lowerIndex--;
 				}
