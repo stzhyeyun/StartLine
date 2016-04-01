@@ -83,12 +83,12 @@ package
 			
 			// 상위 & 하위 그룸 탑색
 			var intermediateGroup:Group = new Group(0);
-			if (numRequired.Value != 0)
+			if (numRequired != 0)
 			{
-				var requiredOfUpper:Int = new Int(numRequired.Value);
-				var requiredOfLower:Int = new Int(numRequired.Value);
+				var requiredOfUpper:int = numRequired;
+				var requiredOfLower:int = numRequired;
 				
-				while (requiredOfUpper.Value != 0)
+				while (requiredOfUpper != 0)
 				{
 					if (upperIndex == -1 || upperIndex >= _userData.length - 1 || !_userData[upperIndex])
 						break;
