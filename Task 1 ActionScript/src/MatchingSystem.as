@@ -17,7 +17,7 @@ package
 			try
 			{
 				var parser:Parser = new Parser();
-				var rawData:Vector.<User>;
+				var rawData:Vector.<User> = new Vector.<User>();
 				
 				_score = parser.ParseData(rawData);
 				GroupUsersByScore(rawData);
