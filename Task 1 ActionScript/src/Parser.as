@@ -68,6 +68,8 @@ package
 		
 		public function ParseScore(input:String, score:Int):Boolean
 		{
+			input = input.replace(/\s/g, '');
+			
 			if (input.search('-') != -1 || input == "0")
 			{
 				trace("\n Error : The value (" + input + ") is invalid.");
