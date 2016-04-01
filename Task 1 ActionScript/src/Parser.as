@@ -12,6 +12,7 @@ package
 		 * @return 파싱된 점수를 반환합니다.
 		 * 
 		 */
+		public function ParseData(outUserData:Vector.<User>):int
 		{
 			var file:File = File.applicationDirectory.resolvePath("Data.txt");
 						
@@ -43,7 +44,7 @@ package
 							userData[3],
 							userData[4]);
 						
-						userList.push(user);
+						outUserData.push(user);
 					}
 					
 					fileStream.close();
