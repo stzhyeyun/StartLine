@@ -64,8 +64,11 @@ package
 			// 내 그룹 탐색
 			if (targetId == myGroupId)
 			{
+				var tempUserList:Vector.<User> = _userData[targetId - 1].GetNear(_score, numRequired);
+				numRequired -= tempUserList.length;
+				
 				var myGroup:Group = new Group(targetId);
-				myGroup.PushUsers(_userData[targetId - 1].GetNear(_score, numRequired.Value, numRequired));
+				myGroup.PushUsers(tempUserList);
 				matchedGroup.push(myGroup);
 				
 				upperIndex = targetId;
@@ -113,7 +116,7 @@ package
 			
 			// 결과 정리
 			var temp:Vector.<Group> = GroupResultsByScore(
-				intermediateGroup.GetNear(_score, numRequired.Value, numRequired));
+				intermediateGroup.GetNear(_score, numRequired));
 			
 			for (var i:int = 0; i < temp.length; i++)
 			{
