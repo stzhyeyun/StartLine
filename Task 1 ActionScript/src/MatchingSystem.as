@@ -4,7 +4,7 @@ package
 	{
 		private const _numRequired:int = 5; // 탐색할 결과의 수
 		
-		private var _score:Int = new Int(0); // 탐색 기준 점수
+		private var _score:int = new int(0); // 탐색 기준 점수
 		private var _userData:Vector.<Group> = new Vector.<Group>(11);
 		
 		public function Initialize():Boolean
