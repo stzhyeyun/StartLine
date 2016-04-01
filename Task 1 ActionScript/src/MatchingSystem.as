@@ -102,7 +102,7 @@ package
 					upperIndex++;
 				}
 				
-				while (requiredOfLower.Value != 0)
+				while (requiredOfLower != 0)
 				{
 					if (lowerIndex < 0 || !_userData[lowerIndex])
 						break;
