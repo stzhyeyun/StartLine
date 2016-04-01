@@ -35,14 +35,14 @@ package
 					// 유저 데이터 파싱
 					for each(var line:String in dataLines)
 					{
-						var userData:Array = line.split(',');						
+						var tempUserData:Array = line.split(',');						
 						
 						var user:User = new User(
-							userData[0],
-							userData[1],
-							userData[2],
-							userData[3],
-							userData[4]);
+							tempUserData[0],
+							tempUserData[1],
+							tempUserData[2],
+							tempUserData[3],
+							tempUserData[4]);
 						
 						outUserData.push(user);
 					}
