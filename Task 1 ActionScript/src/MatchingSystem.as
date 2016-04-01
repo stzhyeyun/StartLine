@@ -7,6 +7,11 @@ package
 		private var _score:int = new int(0); // 탐색 기준 점수
 		private var _userData:Vector.<Group> = new Vector.<Group>(11);
 		
+		/**
+		 * 매칭 시스템을 초기화 (데이터 파싱, 유저 그룹핑) 합니다.
+		 * @return 초기화  성공 여부를 반환합니다.
+		 * 
+		 */
 		public function Initialize():Boolean
 		{
 			try
@@ -25,6 +30,10 @@ package
 			return true;
 		}
 		
+		/**
+		 * 데이터에서 파싱한 점수를 기준으로 가까운 점수를 가진 유저를 매칭합니다.
+		 * 
+		 */
 		public function MatchByScore():void
 		{
 			var groupId:int = DetermineWhichGroup(_score);
@@ -131,13 +140,16 @@ package
 			PrintResult(groupId, matchedGroup);
 		}
 		
+		/**
+		 * 점수 기준으로 유저를 그룹핑합니다.
+		 * @param rawData 그룹핑되지 않은 유저 데이터입니다.
+		 * 
+		 */
 		private function GroupUsersByScore(rawData:Vector.<User>):void // 유저 데이터 최초 그룹핑
 		{
 			for (var i:int = 0; i < rawData.length; i++)
 			{
-				PushUser(
-					DetermineWhichGroup(rawData[i].Score),
-					rawData[i]);
+				PushUser(DetermineWhichGroup(rawData[i].Score), rawData[i]);
 			}
 			
 			// 각 그룹 내 유저를 점수 기준 오름차순으로 정렬
@@ -150,6 +162,12 @@ package
 			}
 		}
 		
+		/**
+		 * 점수 기준으로 유저를 그룹핑하고 결과를 반환합니다.
+		 * @param rawData 그룹핑되지 않은 유저 데이터입니다.
+		 * @return 그룹핑 결과를 반환합니다.
+		 * 
+		 */
 		private function GroupResultsByScore(rawData:Vector.<User>):Vector.<Group> // 매칭된 유저 그룹핑
 		{
 			var groupId:int = 0;
@@ -183,6 +201,12 @@ package
 			return result;
 		}
 		
+		/**
+		 * 입력한 점수가 어떤 그룹에 속하는지 확인하고 결과를 반환합니다. 
+		 * @param score 기준 접수입니다.
+		 * @return 그룹 ID를 반환합니다.
+		 * 
+		 */
 		private function DetermineWhichGroup(score:int):int
 		{
 			return Math.min(Math.ceil(score / 100000), 11);
@@ -206,6 +230,12 @@ package
 			}
 		}
 		
+		/**
+		 * 매칭 결과를 콘솔에 출력합니다.
+		 * @param groupId 기준 점수가 속하는 그룹의 ID입니다.
+		 * @param result 매칭된 유저 데이터입니다.
+		 * 
+		 */
 		private function PrintResult(groupId:int, result:Vector.<Group>):void
 		{
 			trace("\n======================================================================");

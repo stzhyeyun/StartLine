@@ -6,7 +6,12 @@ package
 	
 	public class Parser
 	{
-		public function ParseData(userList:Vector.<User>):int // return score
+		/**
+		 * 유저 데이터를 텍스트 파일로부터 읽어와 파싱하고 결과를 반환합니다.
+		 * @param outUserData 파싱된 유저 데이터를 저장할 Vector입니다.
+		 * @return 파싱된 점수를 반환합니다.
+		 * 
+		 */
 		{
 			var file:File = File.applicationDirectory.resolvePath("Data.txt");
 						
@@ -61,7 +66,13 @@ package
 			}			
 		}
 		
-		public function ParseScore(input:String):int // return 0: 유효하지 않은 점수 데이터
+		/**
+		 * 점수 데이터를 파싱하여 결과를 반환합니다. 
+		 * @param input 파싱할 점수 데이터입니다.
+		 * @return 파싱 결과를 int형으로 반환합니다. 점수 데이터가 유효하지 않을 경우 0을 반환합니다.
+		 * 
+		 */
+		public function ParseScore(input:String):int
 		{
 			var score:int = 0;
 			
@@ -104,7 +115,8 @@ package
 			
 			score = int(figure);
 			
-			if (score == 0) // 문자 필터
+			// 문자 필터
+			if (score == 0)
 			{
 				trace("\n Error : The value (" + input + ") is invalid.");
 				
