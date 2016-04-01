@@ -7,7 +7,7 @@ package
 		private var _score:int = 0;
 		private var _numWin:int = 0;
 		private var _numDefeat:int = 0;
-		private var _diff:int = 0;
+		private var _diff:int = 0; // 매칭 기준 점수와 유저 점수의 차이 
 		
 		public function User(id:int, name:String, score:int, numWin:int, numDefeat:int)
 		{

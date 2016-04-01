@@ -11,6 +11,7 @@ package
 		}
 		
 		public function GetNear(score:int, numRequired:int, numRemaining:Int):Vector.<User>
+			// 내 그룹에서 점수가 가장 가까운 유저를 반환 (numRequired: 반환이 필요한 유저 수, numRemaining : 반환 후 추가 탐색이 필요한 유저 수)
 		{
 			// 점수차 계산
 			for (var i:int = 0; i < _member.length; i++)
@@ -38,23 +39,7 @@ package
 			return result;
 		}
 		
-		public function GetTop(numRequired:int, numRemaining:Int):Vector.<User>
-		{
-			var result:Vector.<User> = new Vector.<User>();
-			
-			for (var i:int = 0; i < _member.length; i++)
-			{
-				if (i == numRequired)
-					break;
-				
-				result.push(_member[i]);
-			}
-			
-			numRemaining.Value = numRequired - result.length;
-			return result;
-		}
-		
-		public function GetBottom(numRequired:int, numRemaining:Int):Vector.<User>
+		public function GetTop(numRequired:int, numRemaining:Int):Vector.<User> // 점수 기준 상위 멤버를 반환
 		{
 			var result:Vector.<User> = new Vector.<User>();
 			
@@ -72,7 +57,23 @@ package
 			return result;
 		}
 		
-		public function PushOneUser(newOne:User):void
+		public function GetBottom(numRequired:int, numRemaining:Int):Vector.<User> // 점수 기준 하위 멤버를 반환
+		{
+			var result:Vector.<User> = new Vector.<User>();
+			
+			for (var i:int = 0; i < _member.length; i++)
+			{
+				if (i == numRequired)
+					break;
+				
+				result.push(_member[i]);
+			}
+			
+			numRemaining.Value = numRequired - result.length;
+			return result;
+		}
+			
+		public function PushOneUser(newOne:User):void // 한 명의 유저를 그룹 멤버에 추가
 		{
 			if (newOne)
 			{
@@ -80,7 +81,7 @@ package
 			}
 		}
 		
-		public function PushUsers(newOne:Vector.<User>):void
+		public function PushUsers(newOne:Vector.<User>):void // 다수의 유저를 그룹 멤버에 추가
 		{
 			if (newOne)
 			{
@@ -98,7 +99,7 @@ package
 		
 		public function Sort():void
 		{
-			_member.sort(CompareScoreForAscendingSort);
+			_member.sort(CompareScoreForAscendingSort); // 그룹 내 유저를 점수 기준 오름차순으로 정렬
 		}
 		
 		public function Print():void

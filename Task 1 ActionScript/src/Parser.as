@@ -68,8 +68,10 @@ package
 		
 		public function ParseScore(input:String, score:Int):Boolean
 		{
+			// 공란 제거
 			input = input.replace(/\s/g, '');
 			
+			// 음수, 0 필터
 			if (input.search('-') != -1 || input == "0")
 			{
 				trace("\n Error : The value (" + input + ") is invalid.");
@@ -78,6 +80,7 @@ package
 				return false;
 			}
 			
+			// 구두점이 있을 경우 유효한 자리수인지 검사
 			var figure:String = new String();
 			if (input.search(/,/) != -1 || input.search(/\./) != -1)
 			{
@@ -106,7 +109,7 @@ package
 			
 			score.Value = int(figure);
 			
-			if (score.Value == 0)
+			if (score.Value == 0) // 문자 필터
 			{
 				trace("\n Error : The value (" + input + ") is invalid.");
 				

@@ -2,9 +2,9 @@ package
 {
 	public class MatchingSystem
 	{
-		private const _numRequired:int = 5;
+		private const _numRequired:int = 5; // 탐색할 결과의 수
 		
-		private var _score:Int = new Int(0);
+		private var _score:Int = new Int(0); // 탐색 기준 점수
 		private var _userData:Vector.<Group> = new Vector.<Group>(11);
 		
 		public function Initialize():Boolean
@@ -121,7 +121,7 @@ package
 			PrintResult(myGroupId, matchedGroup);
 		}
 		
-		private function GroupUsersByScore(rawData:Vector.<User>):void
+		private function GroupUsersByScore(rawData:Vector.<User>):void // 유저 데이터 최초 그룹핑
 		{
 			for (var i:int = 0; i < rawData.length; i++)
 			{
@@ -129,9 +129,18 @@ package
 					DetermineWhichGroup(rawData[i].Score),
 					rawData[i]);
 			}
+			
+			// 각 그룹 내 유저를 점수 기준 오름차순으로 정렬
+			for each (var group:Group in _userData)
+			{
+				if (group != null)
+				{
+					group.Sort();
+				}
+			}
 		}
 		
-		private function GroupResultsByScore(rawData:Vector.<User>):Vector.<Group>
+		private function GroupResultsByScore(rawData:Vector.<User>):Vector.<Group> // 매칭된 유저 그룹핑
 		{
 			var groupId:int = 0;
 			var doesExist:Boolean = false;
@@ -160,7 +169,7 @@ package
 				doesExist = false;                
 			}
 			
-			result.sort(CompareIdForDescendingSort);
+			result.sort(CompareIdForDescendingSort); // 상위 그룹부터 출력하기 위해 그룹 ID 기준 내림차순 정렬
 			return result;
 		}
 		
