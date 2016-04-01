@@ -102,27 +102,37 @@ package
 				
 				while (requiredOfUpper != 0)
 				{
-					if (upperIndex == -1 || upperIndex >= _userData.length - 1 || !_userData[upperIndex])
+					if (upperIndex == -1 || upperIndex >= _userData.length - 1)
+					{
 						break;
+					}
 					
-					tempUserList = _userData[upperIndex].GetBottom(requiredOfUpper);
-					numRequired -= tempUserList.length;
-					
-					intermediateGroup.PushUsers(tempUserList);
-					
+					if (_userData[upperIndex] != null)
+					{
+						tempUserList = _userData[upperIndex].GetBottom(requiredOfUpper);
+						requiredOfUpper -= tempUserList.length;
+						
+						intermediateGroup.PushUsers(tempUserList);
+					}
+										
 					upperIndex++;
 				}
 				
 				while (requiredOfLower != 0)
 				{
-					if (lowerIndex < 0 || !_userData[lowerIndex])
+					if (lowerIndex < 0 || _userData[lowerIndex] != null)
+					{
 						break;
-					
-					tempUserList = _userData[upperIndex].GetTop(requiredOfLower);
-					numRequired -= tempUserList.length;
-					
-					intermediateGroup.PushUsers(tempUserList);
-					
+					}
+										
+					if (_userData[lowerIndex] != null)
+					{
+						tempUserList = _userData[upperIndex].GetTop(requiredOfLower);
+						requiredOfLower -= tempUserList.length;
+						
+						intermediateGroup.PushUsers(tempUserList);
+					}
+										
 					lowerIndex--;
 				}
 			}
