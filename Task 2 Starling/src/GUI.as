@@ -13,7 +13,9 @@ package
 		{
 			// 스탈링 생성 및 시작
 			_main = new Starling(Main, stage);
-			_main.start();			
+			_main.start();
+						
+			//_main.dispose();
 		}
 	}
 }
