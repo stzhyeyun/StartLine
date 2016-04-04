@@ -172,9 +172,14 @@ package
 			
 			for (var i:int = 0; i < _matchedUserData.length; i++)
 			{
-				height = _matchedUserData.shift().Print(stage, height);
-			}			
-			_matchedGroupId = 0;			
+				height = _matchedUserData[i].Print(stage, height);
+			}		
+			
+			_matchedGroupId = 0;
+			for (i = 0; i < _matchedUserData.length; i++)
+			{
+				_matchedUserData.shift();
+			}						
 		}	
 		
 		/**
