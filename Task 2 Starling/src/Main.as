@@ -14,10 +14,7 @@ package
 		public function Main()
 		{
 			// 이미지 리소스 로드
-			loadImage();
-						
-			// 마우스 인풋 초기화
-			// to do
+			loadImage();			
 			
 			// 배경 세팅
 			var background:Quad = new Quad(
