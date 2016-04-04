@@ -10,7 +10,7 @@ package
 		
 		public function GUI()
 		{
-			// Create a Starling instance that will run the "Main" class
+			// 스탈링 생성 및 시작
 			_main = new Starling(Main, stage);
 			_main.start();
 		}
