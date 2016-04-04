@@ -7,6 +7,10 @@ package
 		
 	public class Main extends Sprite
 	{
+		// 로딩 후 Image를 가지고 있을 것
+		
+		private var _windows:Vector.<Window>;
+		
 		public function Main()
 		{
 			// NOTE @hyeyun 배경
