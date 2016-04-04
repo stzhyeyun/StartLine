@@ -1,5 +1,6 @@
 package
 {
+	import starling.core.Starling;
 	import starling.display.Quad;
 	import starling.display.Sprite;
 	import starling.utils.Color;
@@ -9,9 +10,10 @@ package
 		public function Main()
 		{
 			// NOTE @hyeyun 배경
-			var background:Quad = new Quad(200, 200, Color.TEAL);
-			background.x = 100;
-			background.y = 50;
+			var background:Quad = new Quad(
+				Starling.current.nativeStage.stageWidth,
+				Starling.current.nativeStage.stageHeight,
+				Color.TEAL);
 			addChild(background);
 			
 			
