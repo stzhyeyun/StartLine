@@ -1,45 +1,51 @@
 package
 {
-	public class MatchingSystem
+	import flash.display.Sprite;
+	import flash.display.Stage;
+	import flash.text.TextField;
+	import flash.text.TextFieldAutoSize;
+	import flash.text.TextFieldType;
+
+	public class MatchingSystem extends Sprite 
 	{
-		private const _numRequired:int = 5; // 탐색할 결과의 수
-		
-		private var _score:int = new int(0); // 탐색 기준 점수
+		private const _numRequired:int = 5; // 탐색할 결과의 수		
 		private var _userData:Vector.<Group> = new Vector.<Group>(11);
+		
+		private var _matchedGroupId:int;
+		private var _matchedUserData:Vector.<Group> = new Vector.<Group>();
 		
 		/**
 		 * 매칭 시스템을 초기화 (데이터 파싱, 유저 그룹핑) 합니다.
 		 * @return 초기화  성공 여부를 반환합니다.
 		 * 
 		 */
-		public function Initialize():Boolean
+		public function Initialize(canvas:Program):Boolean
 		{
-			try
+			var parser:Parser = new Parser();
+			var rawData:Vector.<User> = parser.ParseData();
+			
+			if (rawData != null)
 			{
-				var parser:Parser = new Parser();
-				var rawData:Vector.<User> = new Vector.<User>();
-				
-				_score = parser.ParseData(rawData);
 				GroupUsersByScore(rawData);
+				
+				return true;
 			}
-			catch (error:*)
+			else
 			{
 				return false;
 			}
-			
-			return true;
 		}
 		
 		/**
 		 * 데이터에서 파싱한 점수를 기준으로 가까운 점수를 가진 유저를 매칭합니다.
 		 * 
 		 */
-		public function MatchByScore():void
+		public function MatchByScore(score:int):void
 		{
-			var groupId:int = DetermineWhichGroup(_score);
+			_matchedGroupId = DetermineWhichGroup(score);
 			
 			// 유효한 타겟 검색
-			var targetId:int = groupId;
+			var targetId:int = _matchedGroupId;
 			var isCheckedGroup11:Boolean = false;
 			
 			while (!_userData[targetId - 1])
@@ -65,30 +71,29 @@ package
 			}
 			
 			// 매칭 시작...
-			var matchedGroup:Vector.<Group> = new Vector.<Group>();
 			var numRequired:int = _numRequired;
 			var upperIndex:int = -1;
 			var lowerIndex:int = -1;
 			
 			// 내 그룹 탐색
-			if (targetId == groupId)
+			if (targetId == _matchedGroupId)
 			{
-				var tempUserList:Vector.<User> = _userData[targetId - 1].GetNear(_score, numRequired);
+				var tempUserList:Vector.<User> = _userData[targetId - 1].GetNear(score, numRequired);
 				numRequired -= tempUserList.length;
 				
 				var tempGroup:Group = new Group(targetId);
 				tempGroup.PushUsers(tempUserList);
-				matchedGroup.push(tempGroup);
+				_matchedUserData.push(tempGroup);
 				
 				upperIndex = targetId;
 				lowerIndex = targetId - 2;
 			}
-			else if (targetId > groupId)
+			else if (targetId > _matchedGroupId)
 			{
 				upperIndex = targetId - 1;
-				lowerIndex = groupId - 2;
+				lowerIndex = _matchedGroupId - 2;
 			}
-			else if (targetId < groupId)
+			else if (targetId < _matchedGroupId)
 			{
 				lowerIndex = targetId - 1;
 			}
@@ -139,16 +144,38 @@ package
 			
 			// 결과 정리
 			var temp:Vector.<Group> = GroupResultsByScore(
-				intermediateGroup.GetNear(_score, numRequired));
+				intermediateGroup.GetNear(score, numRequired));
 			
 			for (var i:int = 0; i < temp.length; i++)
 			{
-				matchedGroup.push(temp[i]);
+				_matchedUserData.push(temp[i]);
 			}
 			
-			// 결과 출력
-			PrintResult(groupId, matchedGroup);
+			var a:Vector.<Group>;
 		}
+		
+		/**
+		 * 매칭 결과를 콘솔에 출력합니다.
+		 * @param groupId 기준 점수가 속하는 그룹의 ID입니다.
+		 * @param result 매칭된 유저 데이터입니다.
+		 * 
+		 */
+		public function PrintResult(stage:Stage, heightOfUpperField:Number):void
+		{
+			var textField:TextField = new TextField(); 
+			textField.autoSize = TextFieldAutoSize.LEFT;
+			textField.y = heightOfUpperField;
+			textField.text = "\n	Your group : " + _matchedGroupId;
+			stage.addChild(textField);
+			
+			var height:Number = heightOfUpperField + textField.height;
+			
+			for (var i:int = 0; i < _matchedUserData.length; i++)
+			{
+				height = _matchedUserData.shift().Print(stage, height);
+			}			
+			_matchedGroupId = 0;			
+		}	
 		
 		/**
 		 * 점수 기준으로 유저를 그룹핑합니다.
@@ -239,28 +266,7 @@ package
 				}                
 			}
 		}
-		
-		/**
-		 * 매칭 결과를 콘솔에 출력합니다.
-		 * @param groupId 기준 점수가 속하는 그룹의 ID입니다.
-		 * @param result 매칭된 유저 데이터입니다.
-		 * 
-		 */
-		private function PrintResult(groupId:int, result:Vector.<Group>):void
-		{
-			trace("\n======================================================================");
-			trace("\n [Result]");
-			trace("\n Your score : ", _score);
-			trace("\n Your group : ", groupId);
 			
-			for (var i:int = 0; i < result.length; i++)
-			{
-				result[i].Print();
-			}
-			
-			trace("\n======================================================================");
-		}	
-		
 		// Comparer //////////
 		
 		private function CompareIdForDescendingSort(x:Group, y:Group):int 

@@ -1,5 +1,9 @@
 package
 {
+	import flash.display.Stage;
+	import flash.text.TextField;
+	import flash.text.TextFieldAutoSize;
+	
 	public class Group
 	{
 		private var _id:int = -1;
@@ -131,14 +135,22 @@ package
 			_member.sort(CompareScoreForAscendingSort);
 		}
 		
-		public function Print():void
+		public function Print(stage:Stage, heightOfUpperField:Number):Number
 		{
-			trace("\n > Matched group : ", _id, " (", _member.length, " players)");
+			var textField:TextField = new TextField(); 
+			textField.autoSize = TextFieldAutoSize.LEFT;
+			textField.y = heightOfUpperField;
+			textField.text = "\n	> Matched group : " + _id + " (" + _member.length + " players)";
+			stage.addChild(textField);
+			
+			var height:Number = heightOfUpperField + textField.height;
 			
 			for (var i:int = 0; i < _member.length; i++)
 			{
-				_member[i].Print(i + 1);
+				height = _member[i].Print(stage, height, i + 1);
 			}
+			
+			return height;
 		}
 		
 		// Getter //////////

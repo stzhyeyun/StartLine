@@ -12,12 +12,14 @@ package
 		 * @return 파싱된 점수를 반환합니다.
 		 * 
 		 */
-		public function ParseData(outUserData:Vector.<User>):int
+		public function ParseData():Vector.<User>
 		{
 			var file:File = File.applicationDirectory.resolvePath("Data.txt");
 						
 			if (file.exists)
 			{
+				var result:Vector.<User> = new Vector.<User>();
+				
 				try
 				{
 					var fileStream:FileStream = new FileStream();
@@ -28,9 +30,6 @@ package
 										
 					// 줄 단위로 나눔
 					var dataLines:Array = data.split("\r\n");
-					
-					// 점수 파싱
-					var score:int = ParseScore(dataLines.shift());
 					
 					// 유저 데이터 파싱
 					for each(var line:String in dataLines)
@@ -44,7 +43,7 @@ package
 							tempUserData[3],
 							tempUserData[4]);
 						
-						outUserData.push(user);
+						result.push(user);
 					}
 					
 					fileStream.close();
@@ -54,16 +53,16 @@ package
 					trace("\n Error : Data is invalid.");
 					
 					fileStream.close();
-					return 0;
+					return null;
 				}
 			
-				return score;
+				return result;
 			}
 			else
 			{
 				trace("\n Error : Data does not exist. (Valid path : ", file.toString(), ")");
 				
-				return score;
+				return null;
 			}			
 		}
 		

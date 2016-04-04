@@ -1,5 +1,9 @@
 package
 {
+	import flash.display.Stage;
+	import flash.text.TextField;
+	import flash.text.TextFieldAutoSize;
+	
 	public class User
 	{
 		private var _id:int = -1;
@@ -18,14 +22,21 @@ package
 			_numDefeat = numDefeat;
 		}
 		
-		public function Print(num:int):void
+		public function Print(stage:Stage, heightOfUpperField:Number, num:int):Number
 		{
-			trace("  - User ", num,
-				" (ID : ", _id,
-				", Name : ", _name,
-				", Score : ", _score,
-				", Win : ", _numWin,
-				", Defeat : ", _numDefeat, ")");
+			var textField:TextField = new TextField(); 
+			textField.autoSize = TextFieldAutoSize.LEFT;
+			textField.y = heightOfUpperField;
+			textField.text =
+				"	- User " + num +
+				" (ID : " + _id +
+				", Name : " + _name +
+				", Score : " + _score +
+				", Win : " + _numWin +
+				", Defeat : " + _numDefeat + ")";
+			stage.addChild(textField);
+			
+			return heightOfUpperField + textField.height;
 		}
 		
 		// Getter & Setter //////////
