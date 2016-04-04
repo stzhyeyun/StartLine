@@ -1,7 +1,10 @@
 package
 {
+	import flash.desktop.NativeApplication;
 	import flash.display.Sprite;
+	import flash.events.Event;
 	import starling.core.Starling;
+	import starling.events.TouchPhase;
 	
 	[SWF(width="400", height="300", frameRate="60", backgroundColor="#000000")]
 	public class GUI extends Sprite
