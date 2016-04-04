@@ -7,9 +7,15 @@ package
 		private var _assets:Vector.<WindowAsset> = new Vector.<WindowAsset>(5);
 		private var _children:Vector.<Window>;
 		
-		public function Window()
+		public function Window(parent:Window)
 		{
+			_parent = parent;			
 			
+			_assets[WindowAssetId.TITLE_BAR] = new WindowAsset(WindowAssetId.TITLE_BAR);
+			_assets[WindowAssetId.MINIMIZE] = new WindowAsset(WindowAssetId.MINIMIZE);
+			_assets[WindowAssetId.REVERT] = new WindowAsset(WindowAssetId.REVERT);
+			_assets[WindowAssetId.CLOSE] = new WindowAsset(WindowAssetId.CLOSE);
+			_assets[WindowAssetId.CONTENTS] = new WindowAsset(WindowAssetId.CONTENTS);			
 		}
 		
 		public function move():void
