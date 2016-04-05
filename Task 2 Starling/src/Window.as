@@ -1,15 +1,41 @@
 package
 {
+	import flash.geom.Point;
+	
+	import starling.display.Image;
+	import starling.events.Touch;
+	import starling.events.TouchEvent;
+	import starling.events.TouchPhase;
+
 	public class Window
 	{
-		//private var _id:int;
+		private var _container:Main;		
+		private var _assets:Vector.<Image> = new Vector.<Image>(5);
 		private var _parent:Window;
-		private var _assets:Vector.<WindowAsset> = new Vector.<WindowAsset>(5);
 		private var _children:Vector.<Window>;
+		private var _position:Point;
 		
-		public function Window(parent:Window)
+		public function Window(container:Main, parent:Window, position:Point)
 		{
-			_parent = parent;			
+			if (container != null)
+			{
+				_container = container;
+				_container.addEventListener(TouchEvent.TOUCH, onMouseAction);
+			}
+			
+			if (parent != null)
+			{
+				_parent = parent;
+			}
+			
+			_position = position;
+			
+			// 에셋 생성
+			
+			
+			
+		}
+		
 		public function dispose():void
 		{
 			// Image 삭제
@@ -20,11 +46,6 @@ package
 				temp.dispose();
 			}
 			
-			_assets[WindowAssetId.TITLE_BAR] = new WindowAsset(WindowAssetId.TITLE_BAR);
-			_assets[WindowAssetId.MINIMIZE] = new WindowAsset(WindowAssetId.MINIMIZE);
-			_assets[WindowAssetId.REVERT] = new WindowAsset(WindowAssetId.REVERT);
-			_assets[WindowAssetId.CLOSE] = new WindowAsset(WindowAssetId.CLOSE);
-			_assets[WindowAssetId.CONTENTS] = new WindowAsset(WindowAssetId.CONTENTS);			
 			// Window 삭제
 			for (i = 0; i < _children.length; i++)
 			{
