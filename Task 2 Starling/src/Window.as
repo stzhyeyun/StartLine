@@ -24,7 +24,7 @@ package
 				_main = main;
 			}
 			
-			if (parent != null)
+			if (parent)
 			{
 				_parent = parent;
 			}

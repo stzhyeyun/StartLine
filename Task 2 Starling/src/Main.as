@@ -3,6 +3,7 @@ package
 	import flash.desktop.NativeApplication;
 	import flash.events.Event;
 	import flash.geom.Point;
+	
 	import starling.core.Starling;
 	import starling.display.Quad;
 	import starling.display.Sprite;
@@ -28,15 +29,10 @@ package
 			addEventListener(TouchEvent.TOUCH, onMouseAction);
 			NativeApplication.nativeApplication.addEventListener(Event.EXITING, onExit);
 			
-			// 배경
-			addChild(_background);
-			
 			// 그리기
 			
 			
 			// 테스트
-			
-			
 						
 		}
 		
@@ -51,7 +47,7 @@ package
 		
 		private function removeChild(child:Window):void
 		{
-			for (var i:int = 0; i< _windows.length; i++)
+			for (var i:int = 0; i < _windows.length; i++)
 			{
 				if (_windows[i] == child)
 				{
@@ -64,7 +60,7 @@ package
 		{			
 			var action:Touch = event.getTouch(this);
 			
-			if (action != null)
+			if (action)
 			{
 				if (action.phase == TouchPhase.ENDED) // 클릭
 				{
