@@ -33,6 +33,12 @@ package
 			
 			
 			
+			// 에셋 생성
+			setWindowAsset(WindowAssetName.TITLE_BAR);
+			setWindowAsset(WindowAssetName.MINIMIZE);
+			setWindowAsset(WindowAssetName.REVERT);
+			setWindowAsset(WindowAssetName.CLOSE);
+			setWindowAsset(WindowAssetName.CONTENTS);		
 		}
 		
 		public function dispose():void
