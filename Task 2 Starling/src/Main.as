@@ -6,7 +6,9 @@ package
 	import starling.core.Starling;
 	import starling.display.Quad;
 	import starling.display.Sprite;
+	import starling.events.Touch;
 	import starling.events.TouchEvent;
+	import starling.events.TouchPhase;
 	import starling.utils.Color;
 	
 	public class Main extends Sprite
@@ -45,8 +47,17 @@ package
 		
 		{
 			var loader:Loader = new Loader();
+		private function onMouseAction(event:TouchEvent):void
+		{			
+			var action:Touch = event.getTouch(this);
 			
-			// 윈도우 이미지 에셋을 각각 로드 후 텍스처 -> 이미지 형태로 저장
+			if (action != null)
+			{
+				if (action.phase == TouchPhase.ENDED) // 클릭
+				{
+					createWindow(action.getLocation(this));
+				}
+			}
 		}
 	}
 }
