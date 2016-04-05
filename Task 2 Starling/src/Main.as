@@ -2,6 +2,7 @@ package
 {
 	import flash.desktop.NativeApplication;
 	import flash.events.Event;
+	import flash.geom.Point;
 	import starling.core.Starling;
 	import starling.display.Quad;
 	import starling.display.Sprite;
@@ -37,9 +38,9 @@ package
 						
 		}
 		
-		public function createWindow():void
+		private function createWindow(position:Point):void
 		{
-			
+			_windows.push(new Window(this, null, position));
 		}
 		
 		private function loadImage():void
