@@ -23,8 +23,8 @@ package
 		
 		private function onExit(event:Event):void
 		{
-			this.removeEventListener(Event.EXITING, onExit);
-			_main.dispose();
+			NativeApplication.nativeApplication.removeEventListener(Event.EXITING, onExit);
+			//_main.dispose();
 		}	
 	}
 }
