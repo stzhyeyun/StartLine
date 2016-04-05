@@ -7,7 +7,7 @@ package
 	import starling.events.TouchEvent;
 	import starling.events.TouchPhase;
 
-	public class Window
+	public class Window extends Sprite
 	{
 		private var _container:Main;		
 		private var _assets:Vector.<Image> = new Vector.<Image>(5);
