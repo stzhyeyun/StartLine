@@ -43,7 +43,6 @@ package
 			_windows.push(new Window(this, null, position));
 		}
 		
-		private function loadImage():void
 		{
 			var loader:Loader = new Loader();
 			
