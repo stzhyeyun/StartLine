@@ -1,10 +1,13 @@
 package
 {
+	import flash.desktop.NativeApplication;
+	import flash.events.Event;
 	import starling.core.Starling;
 	import starling.display.Quad;
 	import starling.display.Sprite;
+	import starling.events.TouchEvent;
 	import starling.utils.Color;
-		
+	
 	public class Main extends Sprite
 	{
 		private var _background:Quad = new Quad(
@@ -16,16 +19,22 @@ package
 		public function Main()
 		{
 			// 이미지 리소스 로드
-			loadImage();			
+			//TextureManager.getInstance().initialize();			
 			
-			// 배경 세팅
-			var background:Quad = new Quad(
-				Starling.current.nativeStage.stageWidth,
-				Starling.current.nativeStage.stageHeight,
-				Color.TEAL);
-			addChild(background);
+			// 이벤트 등록
+			addEventListener(TouchEvent.TOUCH, onMouseAction);
+			NativeApplication.nativeApplication.addEventListener(Event.EXITING, onExit);
+			
+			// 배경
+			addChild(_background);
 			
 			// 그리기
+			
+			
+			// 테스트
+			
+			
+						
 		}
 		
 		public function createWindow():void
