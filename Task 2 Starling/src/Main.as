@@ -78,9 +78,12 @@ package
 		private function onExit(event:Event):void
 		{
 			// 윈도우 삭제
-			for (var i:int = 0; i < _windows.length; i++)
+			if (_windows)
 			{
-				_windows.shift().dispose();
+				for (var i:int = 0; i < _windows.length; i++)
+				{
+					_windows.shift().dispose();
+				}
 			}
 			
 			// 텍스처 매니저 삭제
