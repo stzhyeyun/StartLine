@@ -42,6 +42,10 @@ package
 		
 		private function createWindow(position:Point):void
 		{
+			if (!_windows)
+			{
+				_windows = new Vector.<Window>();
+			}
 			_windows.push(new Window(this, null, position));
 		}
 		
