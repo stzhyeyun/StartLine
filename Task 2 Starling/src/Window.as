@@ -10,12 +10,26 @@ package
 		public function Window(parent:Window)
 		{
 			_parent = parent;			
+		public function dispose():void
+		{
+			// Image 삭제
+			for (var i:int = 0; i < _assets.length; i++)
+			{
+				var temp:Image = _assets.shift();
+				_container.removeChild(temp);
+				temp.dispose();
+			}
 			
 			_assets[WindowAssetId.TITLE_BAR] = new WindowAsset(WindowAssetId.TITLE_BAR);
 			_assets[WindowAssetId.MINIMIZE] = new WindowAsset(WindowAssetId.MINIMIZE);
 			_assets[WindowAssetId.REVERT] = new WindowAsset(WindowAssetId.REVERT);
 			_assets[WindowAssetId.CLOSE] = new WindowAsset(WindowAssetId.CLOSE);
 			_assets[WindowAssetId.CONTENTS] = new WindowAsset(WindowAssetId.CONTENTS);			
+			// Window 삭제
+			for (i = 0; i < _children.length; i++)
+			{
+				_children.shift().dispose();
+			}			
 		}
 		
 		public function move():void
