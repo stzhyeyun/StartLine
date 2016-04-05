@@ -45,21 +45,29 @@ package
 			setWindowAsset(WindowAssetName.CONTENTS);		
 		}
 		
-		public function dispose():void
+		public override function dispose():void
 		{
 			// Image 삭제
-			for (var i:int = 0; i < _assets.length; i++)
+			if (_assets)
 			{
-				var temp:Image = _assets.shift();
-				_container.removeChild(temp);
-				temp.dispose();
+				for (var i:int = 0; i < _assets.length; i++)
+				{
+					var temp:Image = _assets.shift();
+					_main.removeChild(temp);
+					temp.dispose();
+				}
 			}
 			
 			// Window 삭제
-			for (i = 0; i < _children.length; i++)
+			if (_children)
 			{
-				_children.shift().dispose();
-			}			
+				for (i = 0; i < _children.length; i++)
+				{
+					_children.shift().dispose();
+				}
+			}
+			
+			super.dispose();
 		}
 		
 		public function move():void
