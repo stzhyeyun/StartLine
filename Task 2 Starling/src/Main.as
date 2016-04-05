@@ -7,9 +7,11 @@ package
 		
 	public class Main extends Sprite
 	{
-		// 로딩 후 Image를 가지고 있을 것
-		
-		private var _windows:Vector.<Window>;
+		private var _background:Quad = new Quad(
+			Starling.current.nativeStage.stageWidth,
+			Starling.current.nativeStage.stageHeight,
+			Color.TEAL);		
+		private var _windows:Vector.<Window> = new Vector.<Window>();
 		
 		public function Main()
 		{
