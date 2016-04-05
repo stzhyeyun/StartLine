@@ -14,12 +14,11 @@ package
 		private var _parent:Window;
 		private var _children:Vector.<Window>;
 		
-		public function Window(container:Main, parent:Window, position:Point)
+		public function Window(main:Main, parent:Window, position:Point)
 		{
-			if (container != null)
+			if (main)
 			{
-				_container = container;
-				_container.addEventListener(TouchEvent.TOUCH, onMouseAction);
+				_main = main;
 			}
 			
 			if (parent != null)
@@ -156,7 +155,7 @@ package
 						{
 							_children = new Vector.<Window>();
 						}
-						_children.push(new Window(_container, this, touch.getLocation(_container)));
+						_children.push(new Window(_main, this, touch.getLocation(_main)));
 					}
 				}
 				else if (touch.phase == TouchPhase.MOVED)
