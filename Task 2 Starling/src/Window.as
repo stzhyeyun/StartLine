@@ -26,11 +26,13 @@ package
 				_parent = parent;
 			}
 			
-			_position = position;
+			this.x = position.x;
+			this.y = position.y;
 			
-			// 에셋 생성
+			// 마우스 이벤트 리스너
+			addEventListener(TouchEvent.TOUCH, onMouseAction);
 			
-			
+			_main.addChild(this);
 			
 			// 에셋 생성
 			setWindowAsset(WindowAssetName.TITLE_BAR);
