@@ -79,6 +79,57 @@ package
 			}			
 		}
 		
+		private function setWindowAsset(name:String):void
+		{
+			// 에셋 생성
+			var asset:Image = new Image(SingletonAssetManager.getInstance().getTexture(name));
+			asset.name = name;
+			
+			// 위치 및 크기 지정
+			switch (name)
+			{
+				case WindowAssetName.TITLE_BAR:
+				{
+
+				}
+					break;
+
+				case WindowAssetName.MINIMIZE:
+				{
+					asset.x = SingletonAssetManager.getInstance().getTexture(WindowAssetName.TITLE_BAR).width * 0.82;
+				}
+					break;
+				
+				case WindowAssetName.REVERT:
+				{
+					asset.x = SingletonAssetManager.getInstance().getTexture(WindowAssetName.TITLE_BAR).width * 0.88;
+				}
+					break;
+				
+				case WindowAssetName.CLOSE:
+				{
+					asset.x = SingletonAssetManager.getInstance().getTexture(WindowAssetName.TITLE_BAR).width * 0.94;
+				}
+					break;
+				
+				case WindowAssetName.CONTENTS:
+				{
+					asset.y = SingletonAssetManager.getInstance().getTexture(WindowAssetName.TITLE_BAR).height;					
+				}
+					break;
+			}	
+			
+			// addChild
+			addChild(asset);		
+			
+			// 벡터에 저장
+			if (!_assets)
+			{
+				_assets = new Vector.<Image>();	
+			}	
+			_assets.push(asset);
+		}
+		
 		private function onMouseAction(event:TouchEvent):void
 		{			
 			var touch:Touch = event.getTouch(this);
