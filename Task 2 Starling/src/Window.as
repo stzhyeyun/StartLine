@@ -44,7 +44,35 @@ package
 				}
 			}			
 		}
+		
+		private function onMouseAction(event:TouchEvent):void
+		{			
+			var touch:Touch = event.getTouch(_container);
 			
-		}		
+			if (touch != null)
+			{
+				if (touch.phase == TouchPhase.BEGAN)
+				{
+				
+				}
+				else if (touch.phase == TouchPhase.ENDED)
+				{
+					if (touch.target.name == WindowAssetName.CONTENTS)
+					{
+						// 마우스 다운 타깃 확인
+						
+						if (_children == null)
+						{
+							_children = new Vector.<Window>();
+						}
+						_children.push(new Window(_container, this, touch.getLocation(_container)));
+					}
+				}
+				else if (touch.phase == TouchPhase.MOVED)
+				{
+					
+				}
+			}
+		}
 	}
 }
