@@ -86,8 +86,8 @@ package
 				}
 			}
 			
-			// 텍스처 매니저 삭제
-			//TextureManager.getInstance().dispose();
+			// 텍스처 삭제
+			SingletonAssetManager.getInstance().dispose();
 			
  			removeEventListener(TouchEvent.TOUCH, onMouseAction);
 			NativeApplication.nativeApplication.removeEventListener(Event.EXITING, onExit);
