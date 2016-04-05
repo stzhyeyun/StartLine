@@ -34,7 +34,6 @@ package
 			// 벡터에서 제거
 		}
 		
-		public function createWindow():void
 		{
 			
 		}		
