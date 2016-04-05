@@ -33,8 +33,6 @@ package
 			// 마우스 이벤트 리스너
 			addEventListener(TouchEvent.TOUCH, onMouseAction);
 			
-			_main.addChild(this);
-			
 			// 에셋 생성
 			setWindowAsset(WindowAssetName.TITLE_BAR);
 			setWindowAsset(WindowAssetName.MINIMIZE);
@@ -43,16 +41,11 @@ package
 			setWindowAsset(WindowAssetName.CONTENTS);		
 		}
 		
-		public override function dispose():void
 		{
-			// Image 삭제
 			if (_assets)
 			{
 				for (var i:int = 0; i < _assets.length; i++)
 				{
-					var temp:Image = _assets.shift();
-					_main.removeChild(temp);
-					temp.dispose();
 				}
 			}
 			
