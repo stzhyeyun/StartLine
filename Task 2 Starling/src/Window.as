@@ -1,11 +1,14 @@
 package
 {
 	import flash.geom.Point;
+	import flash.utils.Dictionary;
 	
 	import starling.display.Image;
+	import starling.display.Sprite;
 	import starling.events.Touch;
 	import starling.events.TouchEvent;
 	import starling.events.TouchPhase;
+	import starling.textures.Texture;
 
 	public class Window extends Sprite
 	{
