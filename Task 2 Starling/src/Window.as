@@ -81,9 +81,9 @@ package
 		
 		private function onMouseAction(event:TouchEvent):void
 		{			
-			var touch:Touch = event.getTouch(_container);
+			var touch:Touch = event.getTouch(this);
 			
-			if (touch != null)
+			if (touch)
 			{
 				if (touch.phase == TouchPhase.BEGAN)
 				{
