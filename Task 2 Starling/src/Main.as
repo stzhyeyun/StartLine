@@ -14,16 +14,22 @@ package
 	
 	public class Main extends Sprite
 	{
-		private var _background:Quad = new Quad(
-			Starling.current.nativeStage.stageWidth,
-			Starling.current.nativeStage.stageHeight,
-			Color.TEAL);		
-		private var _windows:Vector.<Window> = new Vector.<Window>();
+		private var _background:Quad
+		private var _windows:Vector.<Window>;
 		
 		public function Main()
 		{
 			// 이미지 리소스 로드
-			//TextureManager.getInstance().initialize();			
+			SingletonAssetManager.getInstance().initialize("Resources");
+			
+			// 배경 세팅
+			_background = new Quad(
+				Starling.current.nativeStage.stageWidth,
+				Starling.current.nativeStage.stageHeight,
+				Color.TEAL);
+			//_background.addEventListener(TouchEvent.TOUCH, onMouseAction);
+			_background.name = WindowAssetName.BACKGROUND;
+			addChild(_background);
 			
 			// 이벤트 등록
 			addEventListener(TouchEvent.TOUCH, onMouseAction);
