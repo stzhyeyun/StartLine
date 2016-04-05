@@ -28,9 +28,10 @@ package
 			
 		}
 		
-		public function terminate():void
+		public function close():void
 		{
-			
+			// removeChild();
+			// 벡터에서 제거
 		}
 		
 		public function createWindow():void
