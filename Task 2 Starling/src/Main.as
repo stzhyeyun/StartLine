@@ -27,19 +27,11 @@ package
 				Starling.current.nativeStage.stageWidth,
 				Starling.current.nativeStage.stageHeight,
 				Color.TEAL);
-			//_background.addEventListener(TouchEvent.TOUCH, onMouseAction);
-			_background.name = WindowAssetName.BACKGROUND;
 			addChild(_background);
 			
 			// 이벤트 등록
 			addEventListener(TouchEvent.TOUCH, onMouseAction);
 			NativeApplication.nativeApplication.addEventListener(Event.EXITING, onExit);
-			
-			// 그리기
-			
-			
-			// 테스트
-						
 		}
 		
 		private function createWindow(position:Point):void
