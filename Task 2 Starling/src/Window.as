@@ -34,7 +34,16 @@ package
 			// 벡터에서 제거
 		}
 		
+		public function removeChild(child:Window):void
 		{
+			for (var i:int = 0; i< _children.length; i++)
+			{
+				if (_children[i] == child)
+				{
+					_children.removeAt(i);
+				}
+			}			
+		}
 			
 		}		
 	}
