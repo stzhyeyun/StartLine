@@ -10,6 +10,8 @@ package
 	
 	public class Window extends Sprite
 	{
+		private var _id:int = -1;
+		private var _isRoot:Boolean = false; // 루트 윈도우(Main에서 생성한 윈도우) 여부 플래그
 		private var _width:Number;
 		private var _assets:Vector.<Image>;
 		private var _children:Vector.<Window>;
