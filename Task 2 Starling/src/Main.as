@@ -15,7 +15,6 @@ package
 	public class Main extends Sprite
 	{
 		private var _background:Quad
-		private var _windows:Vector.<Window>;
 		
 		public function Main()
 		{
@@ -47,14 +46,6 @@ package
 		
 		private function onExit(event:Event):void
 		{
-			// 윈도우 삭제
-			if (_windows)
-			{
-				for (var i:int = 0; i < _windows.length; i++)
-				{
-					_windows.shift().dispose();
-				}
-			}
 			
 			// 텍스처 삭제
 			SingletonAssetManager.getInstance().dispose();
