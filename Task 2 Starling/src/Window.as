@@ -243,6 +243,11 @@ package
 			
 			if (action)
 			{
+				if (!_isRoot)
+				{
+					// 루트 윈도우가 아닐 경우 부모 윈도우의 _children에서 자신을 제거
+					Window(this.parent).removeChildWindow(_id);
+				}
 				close();
 			}
 		}
