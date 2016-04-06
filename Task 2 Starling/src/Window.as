@@ -31,17 +31,6 @@ package
 			setWindowAsset(WindowAssetName.CONTENTS);		
 		}
 		
-		public function removeChild(child:Window):void
-		{
-			for (var i:int = 0; i< _children.length; i++)
-			{
-				if (_children[i] == child)
-				{
-					_children.removeAt(i);
-				}
-			}			
-		}
-		
 		private function setWindowAsset(name:String):void
 		{
 			// 에셋 생성
