@@ -34,16 +34,14 @@ package
 			NativeApplication.nativeApplication.addEventListener(Event.EXITING, onExit);
 		}
 		
-		private function onMouseAction(event:TouchEvent):void
+		private function onClickBackground(event:TouchEvent):void
 		{			
-			var action:Touch = event.getTouch(this);
+			var action:Touch = event.getTouch(this, TouchPhase.ENDED); // 클릭
 			
 			if (action)
 			{
-				if (action.phase == TouchPhase.ENDED) // 클릭
-				{
-					createWindow(action.getLocation(this));
-				}
+				var window:Window = new Window(action.getLocation(this));
+				addChild(window);
 			}
 		}
 		
