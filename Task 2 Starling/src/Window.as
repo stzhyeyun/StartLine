@@ -7,7 +7,7 @@ package
 	import starling.events.Touch;
 	import starling.events.TouchEvent;
 	import starling.events.TouchPhase;
-
+	
 	public class Window extends Sprite
 	{
 		private var _width:Number;
