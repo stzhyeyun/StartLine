@@ -46,11 +46,13 @@ package
 		
 		private function onExit(event:Event):void
 		{
+			// 배경 및 윈도우 삭제
+			removeChildren();
 			
 			// 텍스처 삭제
 			SingletonAssetManager.getInstance().dispose();
 			
- 			removeEventListener(TouchEvent.TOUCH, onMouseAction);
+			// 이벤트 리스너 제거
 			NativeApplication.nativeApplication.removeEventListener(Event.EXITING, onExit);
 			dispose();
 		}		
