@@ -208,6 +208,15 @@ package
 			}
 		}
 		
+		private function onDragTitleBar(event:TouchEvent):void
+		{
+			var action:Touch = event.getTouch(this, TouchPhase.MOVED);
+			
+			if (action)
+			{
+				move(action.globalX, action.globalY,
+					action.previousGlobalX, action.previousGlobalY);
+			}
 		}
 	}
 }
