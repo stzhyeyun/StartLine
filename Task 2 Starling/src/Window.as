@@ -138,10 +138,29 @@ package
 				}
 			}
 		}
+		
+		private function close():void
+		{
+			if (_assets)
+			{
+				for (var i:int = 0; i < _assets.length; i++)
 				{
-					
+					removeChild(_assets[i]);
 				}
 			}
+			
+			if (_children)
+			{
+				for (i = 0; i < _children.length; i++)
+				{
+					_children[i].close();
+					_children[i].dispose();
+				}
+			}
+			
+			dispose();
+		}
+		
 		}
 	}
 }
