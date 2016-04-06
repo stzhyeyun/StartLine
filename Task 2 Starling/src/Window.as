@@ -10,9 +10,7 @@ package
 
 	public class Window extends Sprite
 	{
-		private var _main:Main;		
 		private var _assets:Vector.<Image>;
-		private var _parent:Window;
 		private var _children:Vector.<Window>;
 		
 		public function Window(main:Main, parent:Window, position:Point)
