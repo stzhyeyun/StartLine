@@ -23,9 +23,6 @@ package
 			this.x = position.x - _width / 4;
 			this.y = position.y;
 			
-			// 마우스 이벤트 리스너
-			addEventListener(TouchEvent.TOUCH, onMouseAction);
-			
 			// 에셋 생성
 			setWindowAsset(WindowAssetName.TITLE_BAR);
 			setWindowAsset(WindowAssetName.MINIMIZE);
