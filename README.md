@@ -1,5 +1,4 @@
-﻿# StartLine
-> 과제 저장소.
+# StartLine
 
 ### / Task 1 ActionScript
 > 필수 과제 "Matching System"을 ActionScript로 포팅.
