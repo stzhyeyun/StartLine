@@ -14,17 +14,8 @@ package
 		private var _assets:Vector.<Image>;
 		private var _children:Vector.<Window>;
 		
-		public function Window(main:Main, parent:Window, position:Point)
+		public function Window(position:Point)
 		{
-			if (main)
-			{
-				_main = main;
-			}
-			
-			if (parent)
-			{
-				_parent = parent;
-			}
 			// 윈도우 (타이틀 바) 너비 저장
 			_width = SingletonAssetManager.getInstance().getTexture(WindowAssetName.TITLE_BAR).width;
 			
