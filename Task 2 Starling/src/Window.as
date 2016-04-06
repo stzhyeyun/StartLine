@@ -33,48 +33,53 @@ package
 		
 		private function setWindowAsset(name:String):void
 		{
-			// 에셋 생성
+			// 에셋 (이미지) 생성 및 오브젝트 이름 지정
 			var asset:Image = new Image(SingletonAssetManager.getInstance().getTexture(name));
 			asset.name = name;
 			
-			// 위치 및 크기 지정
-			switch (name)
+			// 위치 및 크기 지정, 이벤트 리스너 등록
+			switch (asset.name)
 			{
 				case WindowAssetName.TITLE_BAR:
 				{
-
+					asset.addEventListener(TouchEvent.TOUCH, onDragTitleBar);					
 				}
 					break;
-
+				
 				case WindowAssetName.MINIMIZE:
 				{
-					asset.x = SingletonAssetManager.getInstance().getTexture(WindowAssetName.TITLE_BAR).width * 0.82;
+					asset.x = _width * 0.82;
+					asset.addEventListener(TouchEvent.TOUCH, onClickMinimize);
 				}
 					break;
 				
 				case WindowAssetName.REVERT:
 				{
-					asset.x = SingletonAssetManager.getInstance().getTexture(WindowAssetName.TITLE_BAR).width * 0.88;
+					asset.x = _width * 0.88;
+					asset.scaleY = 0.9;
+					asset.addEventListener(TouchEvent.TOUCH, onClickRevert);
 				}
 					break;
 				
 				case WindowAssetName.CLOSE:
 				{
-					asset.x = SingletonAssetManager.getInstance().getTexture(WindowAssetName.TITLE_BAR).width * 0.94;
+					asset.x = _width * 0.94;
+					asset.addEventListener(TouchEvent.TOUCH, onClickClose);
 				}
 					break;
 				
 				case WindowAssetName.CONTENTS:
 				{
-					asset.y = SingletonAssetManager.getInstance().getTexture(WindowAssetName.TITLE_BAR).height;					
+					asset.y = SingletonAssetManager.getInstance().getTexture(WindowAssetName.TITLE_BAR).height;	
+					asset.addEventListener(TouchEvent.TOUCH, onClickContents);
 				}
 					break;
 			}	
 			
-			// addChild
+			// Window 하위에 추가
 			addChild(asset);		
 			
-			// 벡터에 저장
+			// Vector에 저장
 			if (!_assets)
 			{
 				_assets = new Vector.<Image>();	
