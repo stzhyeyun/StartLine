@@ -93,10 +93,29 @@ package
 			this.y += currMouseY - prevMouseY;
 		}
 		
-			
+		private function minimize():void
+		{
+			if (_assets)
 			{
+				for (var i:int = 0; i < _assets.length; i++)
 				{
+					if (_assets[i].name == WindowAssetName.CONTENTS)
+					{
+						_assets[i].visible = false;
+						break;
+					}
 				}
+			}
+			
+			if (_children)
+			{
+				for (i = 0; i < _children.length; i++)
+				{
+					_children[i].visible = false;
+				}
+			}
+		}
+		
 				{
 					if (touch.target.name == WindowAssetName.CONTENTS)
 					{
