@@ -10,15 +10,21 @@ package
 	import starling.events.TouchEvent;
 	import starling.events.TouchPhase;
 	import starling.utils.Color;
+
 	
 	public class Main extends Sprite
 	{
-		private var _background:Quad
+		private var _background:Quad;
 		
 		public function Main()
 		{
 			// 텍스처 로드
-			SingletonAssetManager.getInstance().initialize("Resources");
+			TextureManager.getInstance().enqueue("Resources/titleBar.png");
+			TextureManager.getInstance().enqueue("Resources/minimize.png");
+			TextureManager.getInstance().enqueue("Resources/revert.png");
+			TextureManager.getInstance().enqueue("Resources/close.png");
+			TextureManager.getInstance().enqueue("Resources/contents.png", true);		
+			//SingletonAssetManager.getInstance().initialize("Resources");
 			
 			// 배경 세팅
 			_background = new Quad(
@@ -59,12 +65,13 @@ package
 			removeChildren();
 			
 			// 텍스처 삭제
-			SingletonAssetManager.getInstance().dispose();
+			TextureManager.getInstance().dispose();
+			//SingletonAssetManager.getInstance().dispose();
 			
 			// 이벤트 리스너 제거
 			NativeApplication.nativeApplication.removeEventListener(Event.EXITING, onExit);
 			
 			dispose();
-		}		
+		}
 	}
 }
