@@ -43,7 +43,7 @@ package
 			
 			if (action)
 			{
-				var window:Window = new Window(action.getLocation(this));
+				var window:Window = new Window(true, action.getLocation(this));
 				addChild(window);
 			}
 		}
