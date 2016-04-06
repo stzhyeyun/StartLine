@@ -28,7 +28,8 @@ package
 			// 윈도우 (타이틀 바) 너비 저장
 			_width = SingletonAssetManager.getInstance().getTexture(WindowAssetName.TITLE_BAR).width;
 			
-			this.x = position.x;
+			// 윈도우 위치 지정
+			this.x = position.x - _width / 4;
 			this.y = position.y;
 			
 			// 마우스 이벤트 리스너
