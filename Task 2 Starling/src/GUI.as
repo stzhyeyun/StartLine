@@ -1,8 +1,6 @@
 package
 {
-	import flash.desktop.NativeApplication;
 	import flash.display.Sprite;
-	import flash.events.Event;
 	
 	import starling.core.Starling;
 	
@@ -17,14 +15,6 @@ package
 			// 스탈링 생성 및 시작
 			_main = new Starling(Main, stage);
 			_main.start();
-			
-			NativeApplication.nativeApplication.addEventListener(Event.EXITING, onExit);
 		}
-		
-		private function onExit(event:Event):void
-		{
-			NativeApplication.nativeApplication.removeEventListener(Event.EXITING, onExit);
-			//_main.dispose();
-		}	
 	}
 }
