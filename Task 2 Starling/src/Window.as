@@ -161,6 +161,16 @@ package
 			dispose();
 		}
 		
+		private function onClickMinimize(event:TouchEvent):void
+		{
+			var action:Touch = event.getTouch(this, TouchPhase.ENDED);
+			
+			if (action)
+			{
+				minimize();
+			}
+		}
+		
 		}
 	}
 }
