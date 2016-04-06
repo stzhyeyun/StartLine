@@ -31,25 +31,6 @@ package
 			setWindowAsset(WindowAssetName.CONTENTS);		
 		}
 		
-		{
-			if (_assets)
-			{
-				for (var i:int = 0; i < _assets.length; i++)
-				{
-				}
-			}
-			
-			// Window 삭제
-			if (_children)
-			{
-				for (i = 0; i < _children.length; i++)
-				{
-					_children.shift().dispose();
-				}
-			}
-			
-			super.dispose();
-		}
 		
 		public function move():void
 		{
