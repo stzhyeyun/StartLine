@@ -2,7 +2,6 @@ package
 {
 	import flash.desktop.NativeApplication;
 	import flash.events.Event;
-	import flash.geom.Point;
 	
 	import starling.core.Starling;
 	import starling.display.Quad;
@@ -18,7 +17,7 @@ package
 		
 		public function Main()
 		{
-			// 이미지 리소스 로드
+			// 텍스처 로드
 			SingletonAssetManager.getInstance().initialize("Resources");
 			
 			// 배경 세팅
@@ -54,6 +53,7 @@ package
 			
 			// 이벤트 리스너 제거
 			NativeApplication.nativeApplication.removeEventListener(Event.EXITING, onExit);
+			
 			dispose();
 		}		
 	}
