@@ -31,23 +31,6 @@ package
 			setWindowAsset(WindowAssetName.CONTENTS);		
 		}
 		
-		
-		public function move():void
-		{
-			
-		}
-		
-		public function minimize():void
-		{
-			
-		}
-		
-		public function close():void
-		{
-			// removeChild();
-			// 벡터에서 제거
-		}
-		
 		public function removeChild(child:Window):void
 		{
 			for (var i:int = 0; i< _children.length; i++)
