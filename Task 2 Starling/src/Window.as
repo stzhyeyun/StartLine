@@ -87,17 +87,10 @@ package
 			_assets.push(asset);
 		}
 		
-		private function onMouseAction(event:TouchEvent):void
-		{			
-			var touch:Touch = event.getTouch(this);
 			
-			if (touch)
 			{
-				if (touch.phase == TouchPhase.BEGAN)
 				{
-				
 				}
-				else if (touch.phase == TouchPhase.ENDED)
 				{
 					if (touch.target.name == WindowAssetName.CONTENTS)
 					{
