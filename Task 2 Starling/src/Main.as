@@ -34,26 +34,6 @@ package
 			NativeApplication.nativeApplication.addEventListener(Event.EXITING, onExit);
 		}
 		
-		private function createWindow(position:Point):void
-		{
-			if (!_windows)
-			{
-				_windows = new Vector.<Window>();
-			}
-			_windows.push(new Window(this, null, position));
-		}
-		
-		private function removeChild(child:Window):void
-		{
-			for (var i:int = 0; i < _windows.length; i++)
-			{
-				if (_windows[i] == child)
-				{
-					_windows.removeAt(i);
-				}
-			}			
-		}
-		
 		private function onMouseAction(event:TouchEvent):void
 		{			
 			var action:Touch = event.getTouch(this);
