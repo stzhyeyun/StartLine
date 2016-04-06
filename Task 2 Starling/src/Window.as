@@ -181,6 +181,16 @@ package
 			}
 		}
 		
+		private function onClickClose(event:TouchEvent):void
+		{
+			var action:Touch = event.getTouch(this, TouchPhase.ENDED);
+			
+			if (action)
+			{
+				close();
+			}
+		}
+		
 		}
 	}
 }
