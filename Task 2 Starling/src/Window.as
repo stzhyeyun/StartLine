@@ -122,21 +122,12 @@ package
 			{
 				for (var i:int = 0; i < _assets.length; i++)
 				{
-					if (touch.target.name == WindowAssetName.CONTENTS)
 					if (_assets[i].name == WindowAssetName.CONTENTS)
 					{
-						// 마우스 다운 타깃 확인
-						
-						if (_children == null)
-						{
-							_children = new Vector.<Window>();
-						}
-						_children.push(new Window(_main, this, touch.getLocation(_main)));
 						_assets[i].visible = true;
 						break;
 					}
 				}
-				else if (touch.phase == TouchPhase.MOVED)
 			}
 			
 			if (_children)
