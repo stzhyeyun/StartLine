@@ -21,8 +21,11 @@ package
 		 * @param position 클릭 시점의 마우스 위치입니다.
 		 * 
 		 */		
-		public function Window(position:Point)
+		public function Window(isRoot:Boolean, position:Point)
 		{
+			// 루트 윈도우 여부
+			_isRoot = isRoot;
+			
 			// 윈도우 (타이틀 바) 너비 저장
 			_width = SingletonAssetManager.getInstance().getTexture(WindowAssetName.TITLE_BAR).width;
 			
