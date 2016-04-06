@@ -10,6 +10,7 @@ package
 
 	public class Window extends Sprite
 	{
+		private var _width:Number;
 		private var _assets:Vector.<Image>;
 		private var _children:Vector.<Window>;
 		
@@ -24,6 +25,8 @@ package
 			{
 				_parent = parent;
 			}
+			// 윈도우 (타이틀 바) 너비 저장
+			_width = SingletonAssetManager.getInstance().getTexture(WindowAssetName.TITLE_BAR).width;
 			
 			this.x = position.x;
 			this.y = position.y;
