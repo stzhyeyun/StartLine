@@ -13,9 +13,9 @@ package
 		private var _id:int = -1;
 		private var _isRoot:Boolean = false; // 루트 윈도우(Main에서 생성한 윈도우) 여부 플래그
 		private var _width:Number;
-		private var _assets:Vector.<Image>;
-		private var _children:Vector.<Window>;
-
+		private var _assets:Vector.<Image>; // 윈도우 에셋
+		private var _children:Vector.<Window>; // 자식 윈도우
+		
 		/**
 		 * 윈도우의 위치를 지정하고 에셋을 생성합니다.
 		 * @param position 클릭 시점의 마우스 위치입니다.
