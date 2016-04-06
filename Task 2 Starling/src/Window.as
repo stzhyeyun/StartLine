@@ -284,5 +284,26 @@ package
 					action.previousGlobalX, action.previousGlobalY);
 			}
 		}
+		
+		/**
+		 * 자식 윈도우를 멤버(_children)에서 제거합니다. 
+		 * @param removeId 제거할 윈도우의 ID입니다.
+		 * 
+		 */
+		public function removeChildWindow(removeId:int):void
+		{
+			if (_children)
+			{
+				for (var i:int = 0; i < _children.length; i++)
+				{
+					if (_children[i].id == removeId)
+					{
+						_children.removeAt(i);
+						break;
+					}
+				}
+			}
+		}
+		
 	}
 }
