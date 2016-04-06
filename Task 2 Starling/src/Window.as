@@ -305,5 +305,14 @@ package
 			}
 		}
 		
+		public function get id():int
+		{
+			return _id;
+		}
+		
+		public function set id(id:int):void
+		{
+			_id = id;
+		}
 	}
 }
