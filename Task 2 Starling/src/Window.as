@@ -171,6 +171,16 @@ package
 			}
 		}
 		
+		private function onClickRevert(event:TouchEvent):void
+		{
+			var action:Touch = event.getTouch(this, TouchPhase.ENDED);
+			
+			if (action)
+			{
+				revert();
+			}
+		}
+		
 		}
 	}
 }
