@@ -191,6 +191,23 @@ package
 			}
 		}
 		
+		private function onClickContents(event:TouchEvent):void
+		{
+			var action:Touch = event.getTouch(this, TouchPhase.ENDED);
+			
+			if (action)
+			{
+				var window:Window = new Window(action.getLocation(this));
+				addChild(window);
+				
+				if (!_children)
+				{
+					_children = new Vector.<Window>();
+				}
+				_children.push(window);
+			}
+		}
+		
 		}
 	}
 }
