@@ -29,8 +29,8 @@ package
 				Color.TEAL);
 			addChild(_background);
 			
-			// 이벤트 등록
-			addEventListener(TouchEvent.TOUCH, onMouseAction);
+			// 이벤트 리스너 등록
+			_background.addEventListener(TouchEvent.TOUCH, onClickBackground);
 			NativeApplication.nativeApplication.addEventListener(Event.EXITING, onExit);
 		}
 		
