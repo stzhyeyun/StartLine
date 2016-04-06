@@ -100,7 +100,7 @@ package
 		/**
 		 * 입력 좌표에 따라 윈도우를 이동합니다. 
 		 * @param currMouseX 마우스 포인터의 현재 위치(x)입니다.
-		 * @param currMouseY 마우스 포인터의 형재 위치(y)입니다.
+		 * @param currMouseY 마우스 포인터의 현재 위치(y)입니다.
 		 * @param prevMouseX 마우스 포인터의 이전 위치(x)입니다.
 		 * @param prevMouseY 마우스 포인터의 이전 위치(y)입니다.
 		 * 
