@@ -13,7 +13,12 @@ package
 		private var _width:Number;
 		private var _assets:Vector.<Image>;
 		private var _children:Vector.<Window>;
-		
+
+		/**
+		 * 윈도우의 위치를 지정하고 에셋을 생성합니다.
+		 * @param position 클릭 시점의 마우스 위치입니다.
+		 * 
+		 */		
 		public function Window(position:Point)
 		{
 			// 윈도우 (타이틀 바) 너비 저장
@@ -31,6 +36,11 @@ package
 			setWindowAsset(WindowAssetName.CONTENTS);		
 		}
 		
+		/**
+		 * 윈도우 에셋을 생성하고 위치, 크기, 이벤트 리스너를 세팅한 후 멤버로 저장합니다. 
+		 * @param name 에셋 생성에 사용할 텍스처의 이름입니다.
+		 * 
+		 */
 		private function setWindowAsset(name:String):void
 		{
 			// 에셋 (이미지) 생성 및 오브젝트 이름 지정
@@ -87,14 +97,27 @@ package
 			_assets.push(asset);
 		}
 		
+		/**
+		 * 입력 좌표에 따라 윈도우를 이동합니다. 
+		 * @param currMouseX 마우스 포인터의 현재 위치(x)입니다.
+		 * @param currMouseY 마우스 포인터의 형재 위치(y)입니다.
+		 * @param prevMouseX 마우스 포인터의 이전 위치(x)입니다.
+		 * @param prevMouseY 마우스 포인터의 이전 위치(y)입니다.
+		 * 
+		 */
 		private function move(currMouseX:Number, currMouseY:Number, prevMouseX:Number, prevMouseY:Number):void
 		{
 			this.x += currMouseX - prevMouseX;
 			this.y += currMouseY - prevMouseY;
 		}
 		
+		/**
+		 * 윈도우를 최소화합니다. 
+		 * 
+		 */
 		private function minimize():void
 		{
+			// contents
 			if (_assets)
 			{
 				for (var i:int = 0; i < _assets.length; i++)
@@ -107,6 +130,7 @@ package
 				}
 			}
 			
+			// 자식 윈도우
 			if (_children)
 			{
 				for (i = 0; i < _children.length; i++)
@@ -116,8 +140,13 @@ package
 			}
 		}
 		
+		/**
+		 * 최소화된 윈도우의 크기를 되돌립니다. 
+		 * 
+		 */
 		private function revert():void
 		{
+			// contents
 			if (_assets)
 			{
 				for (var i:int = 0; i < _assets.length; i++)
@@ -130,6 +159,7 @@ package
 				}
 			}
 			
+			// 자식 윈도우
 			if (_children)
 			{
 				for (i = 0; i < _children.length; i++)
@@ -139,8 +169,13 @@ package
 			}
 		}
 		
+		/**
+		 * 윈도우를 닫고 관련 리소스를 해제합니다. 
+		 * 
+		 */
 		private function close():void
 		{
+			// 에셋
 			if (_assets)
 			{
 				for (var i:int = 0; i < _assets.length; i++)
@@ -149,6 +184,7 @@ package
 				}
 			}
 			
+			// 자식 윈도우
 			if (_children)
 			{
 				for (i = 0; i < _children.length; i++)
@@ -161,6 +197,11 @@ package
 			dispose();
 		}
 		
+		/**
+		 * minimize부에 대한 클릭 발생 시 minimize()를 호출합니다. 
+		 * @param event 터치 이벤트입니다.
+		 * 
+		 */
 		private function onClickMinimize(event:TouchEvent):void
 		{
 			var action:Touch = event.getTouch(this, TouchPhase.ENDED);
@@ -171,6 +212,11 @@ package
 			}
 		}
 		
+		/**
+		 * revert부에 대한 클릭 발생 시 revert()를 호출합니다. 
+		 * @param event 터치 이벤트입니다.
+		 * 
+		 */
 		private function onClickRevert(event:TouchEvent):void
 		{
 			var action:Touch = event.getTouch(this, TouchPhase.ENDED);
@@ -181,6 +227,11 @@ package
 			}
 		}
 		
+		/**
+		 * close부에 대한 클릭 발생 시 close()를 호출합니다. 
+		 * @param event 터치 이벤트입니다.
+		 * 
+		 */
 		private function onClickClose(event:TouchEvent):void
 		{
 			var action:Touch = event.getTouch(this, TouchPhase.ENDED);
@@ -191,6 +242,11 @@ package
 			}
 		}
 		
+		/**
+		 * contents부에 대한 클릭 발생 시 새로운 윈도우를 생성하고 멤버로 저장합니다. 
+		 * @param event 터치 이벤트입니다.
+		 * 
+		 */
 		private function onClickContents(event:TouchEvent):void
 		{
 			var action:Touch = event.getTouch(this, TouchPhase.ENDED);
@@ -208,6 +264,11 @@ package
 			}
 		}
 		
+		/**
+		 * titleBar를 드래그하면 윈도우를 이동하는 move()를 호출합니다. 
+		 * @param event 터치 이벤트입니다.
+		 * 
+		 */
 		private function onDragTitleBar(event:TouchEvent):void
 		{
 			var action:Touch = event.getTouch(this, TouchPhase.MOVED);

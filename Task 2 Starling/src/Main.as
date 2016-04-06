@@ -32,6 +32,11 @@ package
 			NativeApplication.nativeApplication.addEventListener(Event.EXITING, onExit);
 		}
 		
+		/**
+		 * 터치 이벤트 발생 시 새로운 윈도우를 생성합니다. 
+		 * @param event 터치 이벤트입니다. 
+		 * 
+		 */
 		private function onClickBackground(event:TouchEvent):void
 		{			
 			var action:Touch = event.getTouch(this, TouchPhase.ENDED); // 클릭
@@ -43,6 +48,11 @@ package
 			}
 		}
 		
+		/**
+		 * SWF 종료 시 사용한 리소스를 해제합니다.
+		 * @param event 종료 이벤트입니다.
+		 * 
+		 */
 		private function onExit(event:Event):void
 		{
 			// 배경 및 윈도우 삭제
