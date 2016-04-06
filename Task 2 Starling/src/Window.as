@@ -258,13 +258,15 @@ package
 			
 			if (action)
 			{
-				var window:Window = new Window(action.getLocation(this));
+				var window:Window = new Window(false, action.getLocation(this));
 				addChild(window);
 				
 				if (!_children)
 				{
 					_children = new Vector.<Window>();
 				}
+				
+				window.id = _children.length;
 				_children.push(window);
 			}
 		}
