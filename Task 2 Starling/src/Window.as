@@ -87,6 +87,12 @@ package
 			_assets.push(asset);
 		}
 		
+		private function move(currMouseX:Number, currMouseY:Number, prevMouseX:Number, prevMouseY:Number):void
+		{
+			this.x += currMouseX - prevMouseX;
+			this.y += currMouseY - prevMouseY;
+		}
+		
 			
 			{
 				{
