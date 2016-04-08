@@ -27,9 +27,13 @@ package
 			// 루트 윈도우 여부
 			_isRoot = isRoot;
 			
-			// 윈도우 (타이틀 바) 너비 저장
-			_width = TextureManager.getInstance().getTexture(WindowAssetName.TITLE_BAR).width;
-			//_width = SingletonAssetManager.getInstance().getTexture(WindowAssetName.TITLE_BAR).width;
+            try {
+                // 윈도우 (타이틀 바) 너비 저장
+                _width = TextureManager.getInstance().getTexture(WindowAssetName.TITLE_BAR).width;    
+            } catch (e:Error) {
+                trace(e.message);
+            }
+			
 			
 			// 윈도우 위치 지정
 			this.x = position.x - _width / 4;
@@ -50,9 +54,13 @@ package
 		 */
 		private function setWindowAsset(name:String):void
 		{
-			// 에셋 (이미지) 생성 및 오브젝트 이름 지정
-			var asset:Image = new Image(TextureManager.getInstance().getTexture(name));
-			//var asset:Image = new Image(SingletonAssetManager.getInstance().getTexture(name));
+            try {
+                // 에셋 (이미지) 생성 및 오브젝트 이름 지정
+                var asset:Image = new Image(TextureManager.getInstance().getTexture(name));    
+            } catch (e:Error) {
+                trace(e.message);
+            }
+			
 			asset.name = name;
 			
 			// 위치 및 크기 지정, 이벤트 리스너 등록
@@ -88,8 +96,12 @@ package
 				
 				case WindowAssetName.CONTENTS:
 				{
-					asset.y = TextureManager.getInstance().getTexture(WindowAssetName.TITLE_BAR).height;	
-					//asset.y = SingletonAssetManager.getInstance().getTexture(WindowAssetName.TITLE_BAR).height;
+                    try {
+                        asset.y = TextureManager.getInstance().getTexture(WindowAssetName.TITLE_BAR).height;    
+                    } catch (e:Error) {
+                        trace(e.message);
+                    }
+						
 					asset.addEventListener(TouchEvent.TOUCH, onClickContents);
 				}
 					break;

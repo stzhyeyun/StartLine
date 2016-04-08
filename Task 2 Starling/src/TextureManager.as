@@ -21,6 +21,7 @@ package
 		{
 			if (_instance)
 			{
+                // NOTE throw 시켜놓고 catch 안해주면 어떻게 될까요?
 				throw new Error("Use getInstance().");
 			} 
 			_instance = this;
