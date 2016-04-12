@@ -19,12 +19,16 @@ package
 		public function Main()
 		{
 			// 텍스처 로드
-			TextureManager.getInstance().enqueue("Resources/titleBar.png");
-			TextureManager.getInstance().enqueue("Resources/minimize.png");
-			TextureManager.getInstance().enqueue("Resources/revert.png");
-			TextureManager.getInstance().enqueue("Resources/close.png");
-			TextureManager.getInstance().enqueue("Resources/contents.png", true);		
-			//SingletonAssetManager.getInstance().initialize("Resources");
+            try {
+                TextureManager.getInstance().enqueue("Resources/titleBar.png");
+                TextureManager.getInstance().enqueue("Resources/minimize.png");
+                TextureManager.getInstance().enqueue("Resources/revert.png");
+                TextureManager.getInstance().enqueue("Resources/close.png");
+                TextureManager.getInstance().enqueue("Resources/contents.png", true);    
+            } catch (e:Error) {
+                trace(e.message);
+            }
+					
 			
 			// 배경 세팅
 			_background = new Quad(
@@ -64,9 +68,12 @@ package
 			// 배경 및 윈도우 삭제
 			removeChildren();
 			
-			// 텍스처 삭제
-			TextureManager.getInstance().dispose();
-			//SingletonAssetManager.getInstance().dispose();
+            try {
+                // 텍스처 삭제
+                TextureManager.getInstance().dispose();    
+            } catch (e:Error) {
+                trace(e.message);
+            }
 			
 			// 이벤트 리스너 제거
 			NativeApplication.nativeApplication.removeEventListener(Event.EXITING, onExit);

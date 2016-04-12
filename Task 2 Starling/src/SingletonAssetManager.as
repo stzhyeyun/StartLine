@@ -3,7 +3,8 @@ package
 	import flash.filesystem.File;
 	
 	import starling.utils.AssetManager;
-	
+
+    [Deprecated(replacement="TextureManager")]
 	public class SingletonAssetManager extends AssetManager
 	{
 		private static var _instance:SingletonAssetManager;
